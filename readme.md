@@ -4,6 +4,8 @@
 
 > 解說 parse 前可能需要說明一下
 
+利用一天 說明目前要達到的結構，一天 或多天解說如何實踐
+
 ### Idea 收集
 
 - how vue parse the html template block
@@ -14,6 +16,8 @@
 - how shopee build Liquid to html ?
 - how svelte parse ?
 - javascript build ?
+- markdown parse to html ?
+- rich editor ~~
 
 #### Parser 相關的列表
 
