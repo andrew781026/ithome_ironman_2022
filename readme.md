@@ -17,6 +17,8 @@
 - how svelte parse ?
 - javascript build ?
 - markdown parse to html ?
+- xml defined parse ?
+- svg ~~~ ???
 - rich editor ~~
 
 #### Parser 相關的列表
