@@ -8,6 +8,9 @@
 
 ### Idea 收集
 
+html . pug . markdown . yaml . json . xml . csv . toml . ini . properties . sql . js . css . scss . less . stylus . ts . tsx . jsx . vue . php . py . rb . go . java . c . cpp . cs
+
+- [.env file pattern](https://www.npmjs.com/package/dotenv)
 - how vue parse the html template block
 - how scss parse to css
 - how pug parse to html
@@ -32,5 +35,9 @@
 ### 一些參考資料
 
 - [快速了解 Tailwind CSS 的 JIT 模式](https://ithelp.ithome.com.tw/articles/10244180)
-
-
+- [《來做個網路瀏覽器吧！》文章列表](https://tigercosmos.xyz/post/2018/02/browser/browser_series_33/)
+- [A History of HTML Parsing at Cloudflare: Part 1](https://blog.cloudflare.com/html-parsing-1/)
+- [parse5](https://github.com/inikulin/parse5)
+- [html spec](https://html.spec.whatwg.org/)
+- [一點都不深入的了解 Compiler、 Interpreter 和 VM](https://www.spreered.com/compiler_for_dummies/)
+- [編譯器概論–游逸平](https://hackmd.io/@idoleat/ry2IPtqnQ)
