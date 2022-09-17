@@ -1,7 +1,6 @@
 const puppeteer = require('puppeteer');
-require('dotenv').config();
-console.log(process.env.USER_NAME);
-console.log(process.env.PASSWORD);
+const fs = require('fs');
+require('dotenv').config({ path: '.env-other' });
 
 (async () => {
     const browser = await puppeteer.launch({
@@ -21,7 +20,7 @@ console.log(process.env.PASSWORD);
     await page.click('.ir-modal__list-link');
     await page.waitForTimeout(4000);
     await page.type('input[name="subject"]', process.env.TITLE);
-    await page.type('div.CodeMirror.cm-s-paper.CodeMirror-wrap textarea',process.env.CONTENT);
+    await page.type('div.CodeMirror.cm-s-paper.CodeMirror-wrap textarea', fs.readFileSync(process.env.CONTENT_PATH, 'utf8').toString());
     await page.waitForTimeout(4000);
     await page.click('button.save-group__dropdown-toggle');
     await page.waitForTimeout(4000);
