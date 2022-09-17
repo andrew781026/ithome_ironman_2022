@@ -33,7 +33,7 @@
 
 - 示意圖
 
-![](goal.png)
+![](https://raw.githubusercontent.com/andrew781026/ithome_ironman_2022/main/day-01/goal.png)
 
 期望我能順利 ^_^
 
