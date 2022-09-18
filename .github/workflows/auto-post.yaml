@@ -53,7 +53,7 @@ jobs:
       # Runs a single command using the runners shell
       - name: post article
         working-directory: ./puppeteer
-        run: npm run post-article
+        run: node write-article.js
         env: # set secret as environment variable
           USER_NAME: ${{ secrets.USER_NAME }}
           PASSWORD: ${{ secrets.PASSWORD }}
