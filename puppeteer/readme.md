@@ -6,8 +6,9 @@
 
 使用方式如下 :
 
-1. 將文章放在任意資料夾中，並 git commit 到 github repo 中
-2. 在 github 上設定 secret `USER_NAME` 跟 `PASSWORD` ，分別是 IThome 的帳號密碼
+1. 將 repo fork 成自己的專案
+2. 將文章放在任意資料夾中，並 git commit 到 github repo 中
+3. 在 github 上設定 secret `USER_NAME` 跟 `PASSWORD` ，分別是 IThome 的帳號密碼
 
 > secret 設定的位置在 `repo > Settings > Secrets > Actions` 中
 ![](screenshot.png)
