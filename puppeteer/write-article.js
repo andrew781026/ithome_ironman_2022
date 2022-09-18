@@ -7,7 +7,7 @@ require('dotenv').config({path: '.env'});
 const articles = require('./articles.json');
 
 // 2022-09-16
-const startDay = dayjs('2022-09-16');
+const startDay = dayjs(process.env.START_DAY, 'YYYY-MM-DD');
 
 const today = dayjs();
 
