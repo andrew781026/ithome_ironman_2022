@@ -4,9 +4,17 @@
 
 其實 Parser 就是將文字做解析的並將其轉換成 抽象語法樹（Abstract Syntax Tree，AST）的黑盒子函式。
 
-打個比方，在 windows 中要使用 .env 檔案，就需要使用 dotenv 這個套件
+打個比方，有個套件叫做 `dotenv`
 
-並在使用 process.env 之前引用 `require('dotenv').config()` 
+他可以自動將 `.env` 檔案中的環境變數載入到 `process.env` 中。
+
+使用如下 :
+
+```js
+require('dotenv').config();
+console.log(process.env);
+// { NODE_ENV: 'development', PORT: '3000' }
+```
 
 而 `require('dotenv').config()` 其實執行了的幾個動作
 
