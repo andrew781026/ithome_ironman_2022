@@ -41,3 +41,7 @@ html . pug . markdown . yaml . json . xml . csv . toml . ini . properties . sql 
 - [html spec](https://html.spec.whatwg.org/)
 - [一點都不深入的了解 Compiler、 Interpreter 和 VM](https://www.spreered.com/compiler_for_dummies/)
 - [編譯器概論–游逸平](https://hackmd.io/@idoleat/ry2IPtqnQ)
+- [ntnu - Language](https://web.ntnu.edu.tw/~algo/Language.html)
+- [simple-compiler](https://jaceju.net/simple-compiler/3-2.html)
+- [前端工程师的编译原理指南-「有限状态机」](https://zhuanlan.zhihu.com/p/467298647)
+- [前端工程师的编译原理指南-「编译器工作流程」](https://juejin.cn/post/7062687356402270244)
