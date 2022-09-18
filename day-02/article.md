@@ -57,4 +57,4 @@ console.log('process.env=', process.env);
 
 ![](https://raw.githubusercontent.com/andrew781026/ithome_ironman_2022/main/day-02/parse-schematic.png)
 
-明天我們就來更進一步的了解 dotenv 是如何將 `.env` 檔案轉換成 AST 的。
+明天我們就來更進一步的了解 dotenv 是如何將 `.env` 內的文字轉換成 AST 的。
