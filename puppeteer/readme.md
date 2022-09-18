@@ -36,3 +36,4 @@
 
 4. 剛剛設定的 `articles.json` 中的第幾個代表第幾天的文章
 5. 設定好後，就可以在 github-action 就會在每天 10 點幫你發文了 ~~
+6. 如果要改發布時間，可以修改 `.github/workflows/auto-post.yaml` 中的 `cron` 參數
