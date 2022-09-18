@@ -1,8 +1,21 @@
 const puppeteer = require('puppeteer');
+const dayjs = require('dayjs');
 const fs = require('fs');
-require('dotenv').config({ path: '.env' });
+const path = require('path');
+require('dotenv').config({path: '.env'});
+
+const articles = require('./articles.json');
+
+// 2022-09-16
+const startDay = dayjs('2022-09-16');
+
+const today = dayjs();
+
+// 第幾天
+const whichDay = today.diff(startDay, 'day') + 1;
 
 (async () => {
+
     const browser = await puppeteer.launch({
         headless: false,
     });
@@ -26,9 +39,14 @@ require('dotenv').config({ path: '.env' });
     await page.click('.ir-modal__list-link');
     await page.waitForTimeout(4000);
 
+    // 取得 article & title 的資訊
+    const todayArticle = articles[whichDay - 1];
+    const contentPath = path.resolve(__dirname, todayArticle.folder, todayArticle.contentPath);
+    const content = fs.readFileSync(contentPath, 'utf8').toString();
+
     // 填寫 "標題 & 內文"
-    await page.type('input[name="subject"]', process.env.TITLE);
-    await page.type('div.CodeMirror.cm-s-paper.CodeMirror-wrap textarea', fs.readFileSync(process.env.CONTENT_PATH, 'utf8').toString());
+    await page.type('input[name="subject"]', todayArticle.title);
+    await page.type('div.CodeMirror.cm-s-paper.CodeMirror-wrap textarea', content);
     await page.waitForTimeout(4000);
 
     // 點擊 "發文按鈕"
