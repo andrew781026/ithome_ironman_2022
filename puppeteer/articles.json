@@ -8,5 +8,10 @@
     "folder": "day-02",
     "title": "[Day02] - Parser 是什麼，可以吃嗎？",
     "contentPath": "article.md"
+  },
+  {
+    "folder": "day-03",
+    "title": "[Day03] - .env 規則說明與解析準備",
+    "contentPath": "article.md"
   }
 ]
