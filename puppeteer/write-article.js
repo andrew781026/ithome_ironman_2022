@@ -28,6 +28,10 @@ const whichDay = today.diff(startDay, 'day') + 1;
     await page.goto('https://ithelp.ithome.com.tw/');
     await page.waitForTimeout(4000);
 
+    await page.evaluate(() => {
+        const body = document.querySelector('body');
+        console.log('body=',body);
+    });
     const isLoginButtonExist = await page.evaluate(() => document.querySelector("ul.menu__right a.menu__item-link"));
 
     if (isLoginButtonExist) {
