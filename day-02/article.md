@@ -13,3 +13,9 @@
 1. 讀取 .env 檔案
 2. 將 .env 檔案內容轉換成 AST ( Parser )
 3. 將 AST 資訊放入 process.env 中
+
+拆開來大概如下的感覺 , 
+
+```js
+
+```
