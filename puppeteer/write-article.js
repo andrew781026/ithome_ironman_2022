@@ -26,10 +26,15 @@ const whichDay = today.diff(startDay, 'day') + 1;
     await page.click('button[type="submit"]');
 
     await page.goto('https://ithelp.ithome.com.tw/');
-
-    // 點擊 "登入/註冊" 按鈕
-    await page.click('ul.menu__right a.menu__item-link');
     await page.waitForTimeout(4000);
+
+    const isLoginButtonExist = await page.evaluate(() => document.querySelector("ul.menu__right a.menu__item-link"));
+
+    if (isLoginButtonExist) {
+        // 點擊 "登入/註冊" 按鈕
+        await page.click('ul.menu__right a.menu__item-link');
+        await page.waitForTimeout(4000);
+    }
 
     // 點擊 "鐵人發文" 按鈕
     await page.click('button[data-target="#ir-select-series__common"]');
