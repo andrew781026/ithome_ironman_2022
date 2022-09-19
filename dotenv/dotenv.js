@@ -1,53 +1,43 @@
-const NEWLINE = '\n'
-const RE_INI_KEY_VAL = /^\s*([\w.-]+)\s*=\s*(.*)?\s*$/
-const RE_NEWLINES = /\\n/g
-const NEWLINES_MATCH = /\n|\r|\r\n/
+const LINE = /(?:^|^)\s*(?:export\s+)?([\w.-]+)(?:\s*=\s*?|:\s+?)(\s*'(?:\\'|[^'])*'|\s*"(?:\\"|[^"])*"|\s*`(?:\\`|[^`])*`|[^#\r\n]+)?\s*(?:#.*)?(?:$|$)/mg
 
-/*
- * Parses a string or buffer into an object
- * @param {String|Buffer} src - source to be parsed
- * @returns {Object}
-*/
-// Parses src into an Object
-function parse (src /*: string | Buffer */, options /*: ?DotenvParseOptions */) /*: DotenvParseOutput */ {
-    const debug = Boolean(options && options.debug)
+// Parser src into an Object
+function parse (src) {
     const obj = {}
 
-    // convert Buffers before splitting into lines and processing
-    src.toString().split(NEWLINES_MATCH).forEach(function (line, idx) {
-        // matching "KEY' and 'VAL' in 'KEY=VAL'
-        const keyValueArr = line.match(RE_INI_KEY_VAL)
-        // matched?
-        if (keyValueArr != null) {
-            const key = keyValueArr[1]
-            // default undefined or missing values to empty string
-            let val = (keyValueArr[2] || '')
-            const end = val.length - 1
-            const isDoubleQuoted = val[0] === '"' && val[end] === '"'
-            const isSingleQuoted = val[0] === "'" && val[end] === "'"
+    // Convert buffer to string
+    let lines = src.toString()
 
-            // if single or double quoted, remove quotes
-            if (isSingleQuoted || isDoubleQuoted) {
-                val = val.substring(1, end)
+    // Convert line breaks to same format
+    lines = lines.replace(/\r\n?/mg, '\n')
 
-                // if double quoted, expand newlines
-                if (isDoubleQuoted) {
-                    val = val.replace(RE_NEWLINES, NEWLINE)
-                }
-            } else {
-                // remove surrounding whitespace
-                val = val.trim()
-            }
+    let match
+    while ((match = LINE.exec(lines)) != null) {
+        const key = match[1]
 
-            obj[key] = val
-        } else if (debug) {
-            log(`did not match key and value when parsing line ${idx + 1}: ${line}`)
+        // Default undefined or null to empty string
+        let value = (match[2] || '')
+
+        // Remove whitespace
+        value = value.trim()
+
+        // Check if double quoted
+        const maybeQuote = value[0]
+
+        // Remove surrounding quotes
+        value = value.replace(/^(['"`])([\s\S]*)\1$/mg, '$2')
+
+        // Expand newlines if double quoted
+        if (maybeQuote === '"') {
+            value = value.replace(/\\n/g, '\n')
+            value = value.replace(/\\r/g, '\r')
         }
-    })
+
+        // Add to object
+        obj[key] = value
+    }
 
     return obj
 }
-
 
 const str = `
 # .env-sample file
