@@ -1,12 +1,12 @@
 # [Day05] - Tokenizer - 逐字分析 ( Word By Word Tokenizer )
 
-昨天的例子中，
+昨天介紹了逐行解析 , 今天我們來說明 Tokenizer 與逐字解析吧 ~ 
 
-第二步的 `#` 在解析實作時，需要修改到前面 `=` 的解析，這樣在擴展的時候會變得很麻煩。
+### 解析方法二：逐字解析
 
-而且換一個解析規則，可能就需要大幅修改程式碼。這樣的解析方式相信 `邦友` 也不會滿意。
+接下來說明的逐字解析 , 需要經歷兩個步驟 , 才會變成 AST
 
-那我們要怎麼辦呢 ? 
+![](https://raw.githubusercontent.com/andrew781026/ithome_ironman_2022/main/day-05/word-by-word.png)
 
 這時我們可以`逐字分析` ，將 `.env` 的內容轉換成 `Tokens`，這個過程也被稱之為 `Tokenizer`。
 
@@ -45,6 +45,12 @@ Kh9NV...
   { "type": "value", "value": "-----BEGIN RSA PRIVATE KEY-----\n...\nKh9NV...\n...\n#### 5678\n-----END DSA PRIVATE KEY-----" }
 ]
 ```
+
+也就是 (.env string) --[ Tokenizer ]--> (Tokens)
+
+如下方式意圖所示
+
+![](https://raw.githubusercontent.com/andrew781026/ithome_ironman_2022/main/day-05/tokenizer.png)
 
 ---
 
