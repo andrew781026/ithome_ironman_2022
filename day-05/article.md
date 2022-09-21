@@ -1,18 +1,21 @@
 # [Day05] - Tokenizer - 逐字分析 ( Word By Word Tokenizer )
 
-昨天介紹了逐行解析 , 今天我們來說明 Tokenizer 與逐字解析吧 ~ 
+昨天介紹了逐行解析 , 今天我們來說明另一個解析方法 `逐字解析` 吧 ~ 
 
 ### 解析方法二：逐字解析
 
-接下來說明的逐字解析 , 需要經歷兩個步驟 , 才會變成 AST
+逐字解析會需要經歷兩個步驟 , 才會變成像昨天一樣的 AST
+
+1. 將字串轉成 token 陣列 ( Tokenizer )
+2. 將 token 陣列轉成 AST ( Parser )
 
 ![](https://raw.githubusercontent.com/andrew781026/ithome_ironman_2022/main/day-05/word-by-word.png)
 
-這時我們可以`逐字分析` ，將 `.env` 的內容轉換成 `Tokens`，這個過程也被稱之為 `Tokenizer`。
+那經過 Tokenizer 後的 Token 陣列長什麼樣子呢 ?
 
-下面先來給一個 `Tokenizer` 的範例：
+先來給一個的舉個例子：
 
-以昨天檔案 `.env-sample` 為例
+昨天檔案 `.env-sample` 的內容如下：
 
 ```properties
 # .env-sample file
@@ -27,7 +30,7 @@ Kh9NV...
 -----END DSA PRIVATE KEY-----"
 ```
 
-經過 `Tokenizer` 處理後，會變成下面的 `Tokens`：
+經過 `Tokenizer` 處理後，預計變成下面的 `Tokens`：
 
 ```json
 [
@@ -51,6 +54,8 @@ Kh9NV...
 如下方式意圖所示
 
 ![](https://raw.githubusercontent.com/andrew781026/ithome_ironman_2022/main/day-05/tokenizer.png)
+
+明天我們將說明實作 `Tokenizer` 需要用的的工具 `狀態機` 
 
 ---
 
