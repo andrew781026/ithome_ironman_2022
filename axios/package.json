@@ -1,0 +1,15 @@
+{
+  "name": "request",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "post-article": "node auto-post.js"
+  },
+  "keywords": [],
+  "author": "andrew",
+  "license": "MIT",
+  "dependencies": {
+    "request": "^2.88.2"
+  }
+}
