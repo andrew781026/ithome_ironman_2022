@@ -2,7 +2,7 @@
 
 ## 狀態機
 
-![狀態機](fsm.png)
+![狀態機](https://raw.githubusercontent.com/andrew781026/ithome_ironman_2022/main/day-06/fsm.png)
 
 狀態機是一種抽象的機器，它有一個或多個狀態，由不同條件控制狀態的轉換，並且在不同狀態下有不同的行為。
 
@@ -15,7 +15,7 @@
 | 關門 | 門已關 | x |
 | 開門 | x | 門已開 | 
 
-![電梯](elevator.png)
+![電梯](https://raw.githubusercontent.com/andrew781026/ithome_ironman_2022/main/day-06/elevator.png)
 
 當然電梯的狀態肯定不只這些 , 他還有 `運行中` 這個狀態 , 下面我們分析一下 , 加上 `運行中` 這個狀態有的改變
 
@@ -28,7 +28,7 @@
 
 > 狀態圖
 
-![電梯](ele-status-map.png)
+![電梯狀態圖](https://raw.githubusercontent.com/andrew781026/ithome_ironman_2022/main/day-06/ele-status-map.png)
 
 > 狀態轉移表
 
@@ -41,7 +41,7 @@
 
 當然現實中的電梯，有 `關門中` 跟 `開門中` 這兩個狀態，來防止進出電梯門的乘客被夾扁
 
-[被電梯夾圖.gif]
+![被電梯夾扁](https://raw.githubusercontent.com/andrew781026/ithome_ironman_2022/main/day-06/flatten.gif)
 
 > 小作業：請思考一下，如果要加入 `關門中` 跟 `開門中` 這兩個狀態，該如何表達 `狀態轉移表` 跟 `狀態圖` 呢？
 
