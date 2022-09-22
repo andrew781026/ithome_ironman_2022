@@ -35,11 +35,14 @@ Kh9NV...
 
 1. 遇到非關鍵字元，如 a . b . c . d ...時
 
+---
 
+今天有邦友問我，整個系列，只有看到文字分析，搞不太懂這有什麼用處 ?
+
+這邊我放一張 Vue 是如何將 <template> 中的 HTML 字串轉換成 HTML DOM 的圖，可以讓你更了解這個系列的用途。
+
+![vue-parse-flow](https://raw.githubusercontent.com/andrew781026/ithome_ironman_2022/main/day-07/vue-parse-flow.gif)
 
 ### 參考資料
 
-- [Day 21：什麼是「有限狀態機」？](https://ithelp.ithome.com.tw/articles/10225343)
-- [Day08 - 實作一個狀態機 - 1](https://ithelp.ithome.com.tw/articles/10270230)
-- [台部落 - 用python模擬電梯程序](https://www.twblogs.net/a/5bafa38b2b7177781a0f391a)
-- [WIKI - 有限狀態機](https://zh.wikipedia.org/wiki/%E6%9C%89%E9%99%90%E7%8A%B6%E6%80%81%E6%9C%BA)
+- [[譯]Vue.js內部原理淺析](https://codertw.com/%E7%A8%8B%E5%BC%8F%E8%AA%9E%E8%A8%80/713771/)
