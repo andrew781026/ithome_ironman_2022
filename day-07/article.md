@@ -59,6 +59,8 @@ Kh9NV...
 19. AFTER_EQUAL 狀態時遇到 `"` ，切換狀態為 IN_QUOTATION，如果 collected 變數有文字 ( ex: `KEY01=GG"GG` )，則抱錯 ( = 後面的 " 之間不能有文字 )
 20. AFTER_EQUAL 狀態時遇到 `\n` ，切換狀態為 NORMAL，並將收集的文字當作 value，然後清空 collected 變數內的文字
 
+> 當你念完上面的 20 條咒語，你才能發動一個小型魔法叫做 `Tokenizer` ![wind](https://ithelp.ithome.com.tw/images/emoticon/emoticon10.gif)
+
 ### 第五步，畫出狀態圖
 
 [圖片繪製中...]
