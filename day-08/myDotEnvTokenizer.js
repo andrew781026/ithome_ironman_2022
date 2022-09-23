@@ -1,13 +1,10 @@
-// myDotEnvParser.js
+// myDotEnvTokenizer.js
 
 // 第一步 - 讀取檔案內容 , 取得要 Parser 的字串
 const fs = require('fs');
 const str = fs.readFileSync('.env-sample', 'utf8');
 
 // 第二步 - 定義特定字元
-const EQUAL = '=';
-const COMMENT = '#';
-const QUOTATION = '"';
 let CURR_STATUS = 0; // 0: normal, 1: in quotation, 2: in comment, 3: after equal
 let collected = '';
 const tokens = [];
@@ -21,16 +18,6 @@ const STATUS = {
     AFTER_EQUAL: 3,
 }
 
-const updatePosition = (char) => {
-    // 遇到換行符號 , 行數 + 1
-    if (char === '\n') {
-        position.row++;
-        position.column = 0;
-    } else {
-        position.column++;
-    }
-}
-
 const resetCollect = () => collected = '';
 
 // 第三步 - 逐字讀取 , 遇到特定字元( # . " . = . \n )做特別處理
@@ -41,9 +28,6 @@ try {
     while (charList.length > 0) {
 
         const current = charList.shift();
-
-        // 更新目前位置
-        updatePosition(current);
 
         if (CURR_STATUS === STATUS.NORMAL) {
 

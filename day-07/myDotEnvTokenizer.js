@@ -1,4 +1,4 @@
-// myDotEnvParser.js
+// myDotEnvTokenizer.js
 
 // 第一步 - 讀取檔案內容 , 取得要 Parser 的字串
 const fs = require('fs');

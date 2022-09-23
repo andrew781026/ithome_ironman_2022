@@ -63,7 +63,7 @@ Kh9NV...
 
 ### 第五步，畫出狀態圖
 
-![vue-parse-flow](https://raw.githubusercontent.com/andrew781026/ithome_ironman_2022/main/day-07/env-status-map.png)
+![env-status-map](https://raw.githubusercontent.com/andrew781026/ithome_ironman_2022/main/day-07/env-status-map.png)
 
 明天我們就根據今天的狀態圖來實作逐字分析的程式 ( •̀ ω •́ )✧
 
