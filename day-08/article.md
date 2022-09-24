@@ -162,7 +162,6 @@ const AST = {
     SECRET_HASH: 'something-with-a-#-hash' ,
     PRIVATE_KEY: '-----BEGIN RSA PRIVATE KEY-----\n...\nKh9NV...\n...\n#### 5678\n-----END DSA PRIVATE KEY-----' ,
 }
-
 ``` 
 
 ```JS
