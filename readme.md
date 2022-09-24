@@ -46,3 +46,4 @@ html . pug . markdown . yaml . json . xml . csv . toml . ini . properties . sql 
 - [simple-compiler](https://jaceju.net/simple-compiler/3-2.html)
 - [前端工程师的编译原理指南-「有限状态机」](https://zhuanlan.zhihu.com/p/467298647)
 - [前端工程师的编译原理指南-「编译器工作流程」](https://juejin.cn/post/7062687356402270244)
+- [craftinginterpreters](http://craftinginterpreters.com/scanning.html)
