@@ -38,7 +38,7 @@ const whichDay = today.diff(startDay, 'day') + 1;
 
     await page.evaluate(() => {
         const body = document.querySelector('body');
-        console.log('body=',body);
+        console.debug('body=',body);
     });
     const isLoginButtonExist = await page.evaluate(() => document.querySelector("ul.menu__right a.menu__item-link"));
 
@@ -48,18 +48,38 @@ const whichDay = today.diff(startDay, 'day') + 1;
         await page.waitForTimeout(4000);
     }
 
+    await page.evaluate(() => {
+        const body = document.querySelector('body');
+        console.debug('body=',body);
+    });
+
     // 點擊 "鐵人發文" 按鈕
     await page.click('button[data-target="#ir-select-series__common"]');
     await page.waitForTimeout(4000);
+
+    await page.evaluate(() => {
+        const body = document.querySelector('body');
+        console.debug('body=',body);
+    });
 
     // 點擊 "主題區域"
     await page.click('.ir-modal__list-link');
     await page.waitForTimeout(4000);
 
+    await page.evaluate(() => {
+        const body = document.querySelector('body');
+        console.debug('body=',body);
+    });
+
     // 取得 article & title 的資訊
     const todayArticle = articles[whichDay - 1];
     const contentPath = path.resolve(__dirname, todayArticle.folder, todayArticle.contentPath);
     const content = fs.readFileSync(contentPath, 'utf8').toString();
+
+    await page.evaluate(() => {
+        const body = document.querySelector('body');
+        console.debug('body=',body);
+    });
 
     // 填寫 "標題 & 內文"
     await page.type('input[name="subject"]', todayArticle.title);
