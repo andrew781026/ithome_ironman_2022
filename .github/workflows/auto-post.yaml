@@ -26,7 +26,7 @@ on:
         required: true
   schedule:
     # Runs "at every day 10 : 00" (see https://crontab.guru)
-    - cron: '30 21 * * *'
+    - cron: '00 10 * * *'
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
