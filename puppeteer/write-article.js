@@ -20,10 +20,10 @@ const whichDay = today.diff(startDay, 'day') + 1;
     const browser = await puppeteer.launch({
         headless: true,
         args: [
-            `--no-sandbox`
-                `--disable-setuid-sandbox`
-                `--disable-extensions-except=${extensionPath}`,
-            `--load-extension=${extensionPath}`
+            `--no-sandbox`,
+            `--disable-setuid-sandbox`,
+            // `--disable-extensions-except=${extensionPath}`,
+            // `--load-extension=${extensionPath}`
         ],
         slowMo: 50
     });
