@@ -18,7 +18,6 @@ const userAgent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 
 
 (async () => {
 
-    // puppeteer 在 github-actions 發生錯誤的解法 - https://stackoverflow.com/questions/62228154/puppeteer-fails-to-initiate-in-github-actions
     const browser = await puppeteer.launch({
         headless: true,
         slowMo: 50
