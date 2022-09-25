@@ -1,6 +1,8 @@
-# [Day10] - HTML 解析前說明
-
 接下來我們根據之前的步驟來分析 HTML ，想辦法生成它的 Tokenizer 跟 Parser 吧 ~
+
+1. 歸納出 `狀態圖`
+2. 利用狀態圖實做出 Tokenizer
+3. 產生 Parser 將 Tokens 轉換成 AST
 
 與 .env-sample 分析時相同，我們先來看看 HTML 的輸入文字 & 預期的輸出 Tokens . AST 吧 ~
 
@@ -28,7 +30,7 @@ const tokens = [
 ]
 ```
 
-#### 預期的輸出 Tokens
+#### 預期的輸出 AST
 
 ```JS
 const AST = {
@@ -61,7 +63,7 @@ const AST = {
 }
 ``` 
 
-也就是再次分析 HTML 並且製造出 Tokenizer 跟 Parser 
+也就是再次分析 HTML 並且製造出 Tokenizer 跟 Parser
 
 1. Tokenizer - 由 HTML 產生 Tokens
 2. Parser - 由 Tokens 產生 AST
