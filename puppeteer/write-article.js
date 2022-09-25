@@ -16,8 +16,16 @@ const whichDay = today.diff(startDay, 'day') + 1;
 
 (async () => {
 
+    // puppeteer 在 github-actions 發生錯誤的解法 - https://stackoverflow.com/questions/62228154/puppeteer-fails-to-initiate-in-github-actions
     const browser = await puppeteer.launch({
-        // headless: false,
+        headless: true,
+        args: [
+            `--no-sandbox`
+                `--disable-setuid-sandbox`
+                `--disable-extensions-except=${extensionPath}`,
+            `--load-extension=${extensionPath}`
+        ],
+        slowMo: 50
     });
     const page = await browser.newPage();
     await page.goto('https://member.ithome.com.tw/login');
