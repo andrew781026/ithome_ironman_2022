@@ -31,7 +31,25 @@ while (charList.length > 0) {
 }
 ``` 
 
-### 第二步，定義關鍵的狀態
+### 第二步，逐字將字元取出，將字元收集起來到 collected 變數中
+
+```JS
+let collected = '';
+
+while (charList.length > 0) {
+
+    const current = charList.shift();
+    
+    /*
+    * 在這裡處理特殊字元對應要做什麼事
+    */
+
+    // 如果沒遇到特殊字元 , 就將 char 收集起來
+    if(current !== '\r') collected += current;
+}
+``` 
+
+### 第三步，定義關鍵的狀態
 
 ```JS
 const STATUS = {
@@ -42,16 +60,16 @@ const STATUS = {
 }
 ``` 
 
-### 第三步，準備 tokens 陣列，用來收集 token & 清空 collected 的函式
+### 第四步，準備 tokens 陣列，用來收集 token & 清空 collected 的函式
 
 ```JS
 const tokens = [];
 const resetCollect = () => collected = '';
 ``` 
 
-### 第四步，實作昨天分析的狀態變化規則
+### 第五步，實作昨天分析的狀態變化規則
 
-> 4.1 - NORMAL 的狀態變化
+> 5.1 - NORMAL 的狀態變化
 
 ```JS
 const handle_NORMAL = current => {
@@ -80,7 +98,7 @@ const handle_NORMAL = current => {
 }
 ``` 
 
-> 4.2 - IN_QUOTATION 的狀態變化
+> 5.2 - IN_QUOTATION 的狀態變化
 
 ```JS
 const handle_IN_QUOTATION = current => {
@@ -99,7 +117,7 @@ const handle_IN_QUOTATION = current => {
 }
 ``` 
 
-> 4.3 - IN_COMMENT 的狀態變化
+> 5.3 - IN_COMMENT 的狀態變化
 
 ```JS
 const handle_IN_COMMENT = current => {
@@ -118,7 +136,7 @@ const handle_IN_COMMENT = current => {
 }
 ``` 
 
-> 4.4 - AFTER_EQUAL 的狀態變化
+> 5.4 - AFTER_EQUAL 的狀態變化
 
 ```JS
 const handle_AFTER_EQUAL = current => {
@@ -150,11 +168,55 @@ const handle_AFTER_EQUAL = current => {
 
 ### 完整程式碼
 
-將上面的區塊做整合，就可以得到 完整程式碼 `myDotEnvTokenizer.js`，如果想看[請到 GITHUB 查看](https://github.com/andrew781026/ithome_ironman_2022/blob/main/day-08/myDotEnvTokenizer.js)
+將上面的區塊做整合，就可以得到 完整程式碼 `myDotEnvTokenizer.js`
+
+```
+// 讀取檔案內容 
+const fs = require('fs');
+const str = fs.readFileSync('.env-sample', 'utf8');
+
+// 切分成字元陣列
+const charList = str.split('');
+
+// 狀態列表
+const STATUS = {
+    NORMAL: 0,
+    IN_QUOTATION: 1,
+    IN_COMMENT: 2,
+    AFTER_EQUAL: 3,
+}
+
+// 收集資訊的變數
+let collected = '';
+let CURR_STATUS = STATUS.NORMAL;
+
+// tokens 陣列
+const tokens = [];
+
+// 清空 collected 函式
+const resetCollect = () => collected = '';
+
+while (charList.length > 0) {
+
+    const current = charList.shift();
+
+    if(CURR_STATUS === STATUS.NORMAL) handle_NORMAL(current);
+    if(CURR_STATUS === STATUS.IN_QUOTATION) handle_IN_QUOTATION(current);
+    if(CURR_STATUS === STATUS.IN_COMMENT) handle_IN_COMMENT(current);
+    if(CURR_STATUS === STATUS.AFTER_EQUAL) handle_AFTER_EQUAL(current);
+
+    // 如果沒遇到特殊字元 , 就將 char 收集起來
+    if(current !== '\r') collected += current;
+}
+```
+
+另外想看追加例外處理的部分[可到 GITHUB 查看](https://github.com/andrew781026/ithome_ironman_2022/blob/main/day-08/myDotEnvTokenizer.js)
 
 ---
 
 今天我們花了幾天的時間，終於實做出 env 的 Tokenizer，相信邦友們一定沒有忘記，我們期望設定給 `process.env` 的是 AST ，而不是今天的 Tokens。
+
+> AST
 
 ```JS
 const AST = {
@@ -162,7 +224,10 @@ const AST = {
     SECRET_HASH: 'something-with-a-#-hash' ,
     PRIVATE_KEY: '-----BEGIN RSA PRIVATE KEY-----\n...\nKh9NV...\n...\n#### 5678\n-----END DSA PRIVATE KEY-----' ,
 }
+
 ``` 
+
+> Tokens
 
 ```JS
 const tokens = [

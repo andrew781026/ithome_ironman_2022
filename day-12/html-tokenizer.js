@@ -1,6 +1,5 @@
-// myDotEnvTokenizer.js
 
-// 第一步 - 讀取檔案內容 , 取得要 Parser 的字串
+// 第一步 - 讀取檔案內容 , 取得要 Tokenizer 的字串
 
 const str = `<div>
                 <p>Vue</p>
@@ -8,17 +7,17 @@ const str = `<div>
                 <p>Template</p>
             </div>`;
 
-// 第二步 - 定義特定字元
-let CURR_STATUS = 0; // 0: normal, 1: in quotation, 2: in comment, 3: after equal
-let collected = '';
-const tokens = [];
 
+// 第二步，定義關鍵的狀態
 const STATUS = {
     INITIAL: 0,
     IN_TAG: 1,
     IN_TAG_END: 2,
 }
 
+let CURR_STATUS = 0;
+let collected = '';
+const tokens = [];
 const isAlphabet = char => /[a-zA-Z]/.test(char);
 const resetCollect = () => collected = '';
 
@@ -53,14 +52,18 @@ const handle_IN_TAG = current => {
 
     if (current === '/') {
 
+        const next = charList[0];
+
         // 自關閉標籤 voidElement ，例如 <input />
-        if (collected.length > 0) {
+        if (collected.length > 0 && next === '>') {
             tokens.push({type: 'tagSelfClose', name: collected});
             resetCollect();
+            charList.shift(); // next char `>` 已確認過，所以可以丟掉
+            CURR_STATUS = STATUS.INITIAL;
         }
 
-        // </ 關閉標籤
-        CURR_STATUS = STATUS.IN_TAG_END;
+        // </ 關閉標籤，例如 </div>
+        else CURR_STATUS = STATUS.IN_TAG_END;
     }
 
     if (current === '>') {
