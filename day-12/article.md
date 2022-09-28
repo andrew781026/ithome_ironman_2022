@@ -150,14 +150,13 @@ const handle_IN_TAG_END = current => {
 
 將上面的區塊做整合，就可以得到 完整程式碼 `htmlTokenizer.js`
 
-```
+```javascript
 // 讀取檔案內容 
 const fs = require('fs');
 const str = fs.readFileSync('sample.html', 'utf8');
 
 // 切分成字元陣列
 const charList = str.split('');
-
 
 // 第二步，定義關鍵的狀態
 const STATUS = {

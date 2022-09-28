@@ -47,3 +47,6 @@ html . pug . markdown . yaml . json . xml . csv . toml . ini . properties . sql 
 - [前端工程师的编译原理指南-「有限状态机」](https://zhuanlan.zhihu.com/p/467298647)
 - [前端工程师的编译原理指南-「编译器工作流程」](https://juejin.cn/post/7062687356402270244)
 - [craftinginterpreters](http://craftinginterpreters.com/scanning.html)
+
+- [html-parse-state](https://html.spec.whatwg.org/multipage/parsing.html#parse-state)
+- [css-consume-token](https://www.w3.org/TR/css-syntax-3/#consume-token)
