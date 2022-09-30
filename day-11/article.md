@@ -45,14 +45,14 @@ const tokens = [
 ### 第四步，整理狀態轉換的條件
 
 1. 英文字母 會將字元收集起來到 collected 變數中
-2. IN_TAG 狀態下遇到 `>` 會將 collected 變數中的內容當作 tagStart 的標籤名稱
+2. IN_TAG 狀態下遇到 `>` 會將 collected 變數中的內容當作 tagStart 的標籤名稱，切換狀態成 INITIAL
 3. IN_TAG 狀態下遇到 `/` ，切換狀態為 IN_TAG_END
-4. IN_TAG_END 狀態下遇到 `>` 會將 collected 變數中的內容當作 tagEnd 的標籤名稱
+4. IN_TAG_END 狀態下遇到 `>` 會將 collected 變數中的內容當作 tagEnd 的標籤名稱，切換狀態成 INITIAL
 5. INITIAL 狀態下遇到 `<` ，切換狀態為 IN_TAG，並將 collected 變數中的內容當作 text content
 
 ### 第五步，畫出狀態圖
 
-[圖片繪製中]
+![電梯狀態圖](https://raw.githubusercontent.com/andrew781026/ithome_ironman_2022/main/day-11/status-map.png)
 
 ### 參考資料
 

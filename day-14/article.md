@@ -8,6 +8,48 @@
 2. 如果是 tagEnd，則 pop elementStack 的最後一個元素
 3. 如果是 tagSelfClose 或 Text，則建立一個新的 node A，node A 當作 elementStack 的最後一個元素的 children
 
+### 根據上面的 3 條規則，做出 4 個 handle function
+
+> `tagStart` handler
+
+```js
+// 遇到 tagStart，node A 當作 elementStack 的最後一個元素的 children，並將 node A push elementStack
+const handleTagStart = elementStack => token => {
+    const node = {type: token.name, children: []}; // node A
+    elementStack[elementStack.length - 1].children.push(node); // node A 當作 elementStack 的最後一個元素的 children
+    elementStack.push(node); // 並將 node A push elementStack
+};
+```
+
+> `tagEnd` handler
+
+```js
+ // 遇到 tagEnd，則 pop elementStack 的最後一個元素
+const handleTagEnd = elementStack => token => {
+    elementStack.pop(); // pop elementStack 的最後一個元素
+};
+```
+
+> `tagSelfClose` handler
+
+```js
+// 遇到 tagStart，node A 當作 elementStack 的最後一個元素的 children，並將 node A push elementStack
+const handleTagSelfClose = elementStack => token => {
+    const node = {type: token.name}; // tagSelfClose node
+    elementStack[elementStack.length - 1].children.push(node); // 當作 elementStack 的最後一個元素的 children
+};
+```
+
+> `Text` handler
+
+```js
+// 遇到 tagStart，node A 當作 elementStack 的最後一個元素的 children，並將 node A push elementStack
+const handleText = elementStack => token => {
+    const node = {type: 'text', content: token.content}; // text node
+    elementStack[elementStack.length - 1].children.push(node); // 當作 elementStack 的最後一個元素的 children
+};
+```
+
 ### 實作
 
 ```js
@@ -59,37 +101,45 @@ const root = {type: 'root', children: []};
 const output_AST = root;
 const elementStack = [root];
 
+const handleTagStart = elementStack => token => {
+    const node = {type: token.name, children: []}; // node A
+    elementStack[elementStack.length - 1].children.push(node); // node A 當作 elementStack 的最後一個元素的 children
+    elementStack.push(node); // 並將 node A push elementStack
+};
+
+const handleTagEnd = elementStack => token => {
+    elementStack.pop(); // pop elementStack 的最後一個元素
+};
+
+const handleTagSelfClose = elementStack => token => {
+    const node = {type: token.name}; // tagSelfClose node
+    elementStack[elementStack.length - 1].children.push(node); // 當作 elementStack 的最後一個元素的 children
+};
+
+const handleText = elementStack => token => {
+    const node = {type: 'text', content: token.content}; // text node
+    elementStack[elementStack.length - 1].children.push(node); // 當作 elementStack 的最後一個元素的 children
+};
+
 while (tokens.length > 0) {
+    // 取出目前要 check 的 token
     const token = tokens.shift();
 
     // 遇到 tagStart，node A 當作 elementStack 的最後一個元素的 children，並將 node A push elementStack
-    if (token.type === 'tagStart') {
-        const node = {type: token.name, children: []}; // node A
-        elementStack[elementStack.length - 1].children.push(node); // node A 當作 elementStack 的最後一個元素的 children
-        elementStack.push(node); // 並將 node A push elementStack
-    }
+    if (token.type === 'tagStart') handleTagStart(elementStack)(token);
 
     // 遇到 tagEnd，則 pop elementStack 的最後一個元素
-    if (token.type === 'tagEnd') {
-        elementStack.pop(); // pop elementStack 的最後一個元素
-    }
+    if (token.type === 'tagEnd') handleTagEnd(elementStack)(token);
 
     // 遇到 text，當作 elementStack 的最後一個元素的 children
-    if (token.type === 'text') {
-        const node = {type:'text', content: token.content}; // text node
-        elementStack[elementStack.length - 1].children.push(node); // 當作 elementStack 的最後一個元素的 children
-    }
+    if (token.type === 'text') handleText(elementStack)(token);
 
     // 遇到 tagSelfClose，當作 elementStack 的最後一個元素的 children
-    if (token.type === 'tagSelfClose') {
-        const node = {type: token.name}; // tagSelfClose node
-        elementStack[elementStack.length - 1].children.push(node); // 當作 elementStack 的最後一個元素的 children
-    }
+    if (token.type === 'tagSelfClose') handleTagSelfClose(elementStack)(token);
 }
 
 assert.deepEqual(output_AST, expected_AST);
 ```
-
 
 ----
 
