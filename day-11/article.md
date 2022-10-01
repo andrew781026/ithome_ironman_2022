@@ -52,7 +52,7 @@ const tokens = [
 
 ### 第五步，畫出狀態圖
 
-![電梯狀態圖](https://raw.githubusercontent.com/andrew781026/ithome_ironman_2022/main/day-11/status-map.png)
+![HTML 狀態圖](https://raw.githubusercontent.com/andrew781026/ithome_ironman_2022/main/day-11/status-map.png)
 
 ### 參考資料
 
