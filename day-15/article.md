@@ -15,11 +15,12 @@
 #### 輸入的文字
 
 ```HTML
+
 <div id="app">
     <p class="text-red">Vue</p>
-    <input type="text" id="username" placeholder="請輸入姓名" disabled />
+    <input type="text" id="username" placeholder="請輸入姓名" disabled/>
     <img src="https://ithelp.ithome.com.tw/storage/image/fight.svg"
-         alt='"圖片"' />
+         alt='"圖片"'>
     <p style="margin-top: 3px">Template</p>
 </div>
 ```
@@ -28,16 +29,26 @@
 
 ```JS
 const tokens = [
-    { "type": "tagStart", "name": "div", attrStr:`id="app"` },
-    { "type": "tagStart", "name": "p", attrStr:`class="text-red"` },
-    { "type": "text", "content": "Vue"  },
-    { "type": "tagEnd", "name": "p" },
-    { "type": "tagSelfClose", "name": "input", attrStr:`type="text" id="username" placeholder="請輸入姓名" disabled` }, 
-    { "type": "tagSelfClose", "name": "img", attrStr:`src="https://ithelp.ithome.com.tw/storage/image/fight.svg" \n alt='"圖片"'` }, 
-    { "type": "tagStart", "name": "p", attrStr:`style="margin-top: 3px"` },
-    { "type": "text", "content": "Template" },
-    { "type": "tagEnd", "name": "p" },
-    { "type": "tagEnd", "name": "div" },
+    {"type": "tagStart", "name": "div", attrStr: `id="app"`},
+    {"type": "tagStart", "name": "p", attrStr: `class="text-red"`},
+    {"type": "text", "content": "Vue"},
+    {"type": "tagEnd", "name": "p"},
+    {
+        "type": "tagSelfClose",
+        "name": "input",
+        isVoidElement: true,
+        attrStr: `type="text" id="username" placeholder="請輸入姓名" disabled`
+    },
+    {
+        "type": "tagSelfClose",
+        "name": "img",
+        isVoidElement: true,
+        attrStr: `src="https://ithelp.ithome.com.tw/storage/image/fight.svg" \n alt='"圖片"'`
+    },
+    {"type": "tagStart", "name": "p", attrStr: `style="margin-top: 3px"`},
+    {"type": "text", "content": "Template"},
+    {"type": "tagEnd", "name": "p"},
+    {"type": "tagEnd", "name": "div"},
 ]
 ```
 
