@@ -38,6 +38,8 @@ const handle_INITIAL = current => {
             tokens.push({type: 'text', value: collected});
             resetCollect();
         }
+
+        return;
     }
 
     // INITIAL 狀態時遇到 `/` 或  `>` 抱錯
@@ -45,10 +47,7 @@ const handle_INITIAL = current => {
         throw new Error('Unexpected token >>> ', current);
     }
 
-    // 如果不是上述的特殊字元，則收集起來
-    if (isAlphabet(current)) {
-        collected += current;
-    }
+    collected += current;
 }
 
 const handle_IN_TAG = current => {
@@ -57,11 +56,9 @@ const handle_IN_TAG = current => {
     if (current === ' ') {
         CURR_STATUS = STATUS.IN_ATTR;
         const tagName = collected;
-        tokens.push({
-            type: 'tagStart',
-            name: tagName,
-            isVoidElement: voidElementChecker(tagName),
-        });
+        const isVoidElement = voidElementChecker(tagName);
+        const token = isVoidElement ? {type: 'tagSelfClose', name: tagName, isVoidElement} :  {type: 'tagStart', name: tagName};
+        tokens.push(token);
         resetCollect();
         return;
     }
