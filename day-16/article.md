@@ -145,6 +145,11 @@ const handle_IN_ATTR = current => {
 
 [完整程式碼 htmlTokenizer.js 請到 github 上查看](https://github.com/andrew781026/ithome_ironman_2022/blob/main/day-16/html-attr-tokenizer.js)
 
+---
+
+根據上面的例子，我們可以瞭解到，當 `狀態圖` & `狀態變化規則` 分析好之後，
+遇到新增 / 刪除 or 全新的規則，程式碼的撰寫都會變得非常簡單。
+
 ### 參考資料
 
 - [書籍 - Vue.js 設計與實現](https://www.tenlong.com.tw/products/9787115583864) - 第 15.3 章節

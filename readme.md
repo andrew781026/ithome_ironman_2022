@@ -50,3 +50,4 @@ html . pug . markdown . yaml . json . xml . csv . toml . ini . properties . sql 
 
 - [html-parse-state](https://html.spec.whatwg.org/multipage/parsing.html#parse-state)
 - [css-consume-token](https://www.w3.org/TR/css-syntax-3/#consume-token)
+- [the-super-tiny-compiler](https://github.com/jamiebuilds/the-super-tiny-compiler)
