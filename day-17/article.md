@@ -1,4 +1,4 @@
-# [Day17] - HTML 加 attr 後需要的 transformer
+# [Day17] - attrStr 的 tokenizer
 
 昨天的 HTML 分析出的 Tokenizer，可以改良 [Day14] 的 Parser 轉換成以下的 AST
 
@@ -83,7 +83,22 @@ const attrs = [
 ]
 ```
 
-### HTML 的 attr 有哪些特性
+---
+
+複習一下，Tokenizer 要如何分析 ? 
+
+1. 確認有哪些規則
+2. 找出關鍵的字元
+3. 找出關鍵的狀態
+4. 狀態轉換的條件
+5. 狀態圖
+6. 根據上面的分析，可以簡單的實作出來
+
+下面我們就來重複上述的 6 個步驟，來分析 attrStr 的 tokenizer。
+
+----
+
+### HTML 的 attr 有哪些規則
 
 - 屬性名稱(attrName) : 不會被 "" 包起來，且不會有空白分開 (ex: type="text" => type)
 - 屬性值(attrValue) : 接在 = 之後，可以被 "" 包起來，也可以不用 (ex: type="text" => "text")
@@ -121,11 +136,21 @@ const attrs = [
 
 ### 程式碼
 
-[完整程式碼 attr-transformer.js 請到 github 上查看](https://github.com/andrew781026/ithome_ironman_2022/blob/main/html-parser/attrStr-tokenizer.js)
+[完整程式碼 attrStr-tokenizer.js 請到 github 上查看](https://github.com/andrew781026/ithome_ironman_2022/blob/main/html-parser/attrStr-tokenizer.js)
 
 ---
 
-也就是說我們經歷了下圖的流程，得到了一個漂亮的 newAst
+我們有了 attrStr-tokenizer.js 之後，我們還需要走訪 ( traverse ) 每個 AST 的節點，並將每個節點的 attrStr 轉換成 attrs。
+
+有個專業術語叫做 transform，那個意思就是當我們走訪 ( traverse )  每個 AST 的節點，對每個節點做一些加工。
+
+複習一下，我們分析的步驟
+
+- tokenize
+- parse
+- transform
+
+也就是下圖所示的那樣：
 
 ![new_flow](https://raw.githubusercontent.com/andrew781026/ithome_ironman_2022/main/day-17/new-flow.png)
 

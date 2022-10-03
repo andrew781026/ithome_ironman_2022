@@ -31,25 +31,7 @@ while (charList.length > 0) {
 }
 ``` 
 
-### 第二步，逐字將字元取出，將字元收集起來到 collected 變數中
-
-```JS
-let collected = '';
-
-while (charList.length > 0) {
-
-    const current = charList.shift();
-    
-    /*
-    * 在這裡處理特殊字元對應要做什麼事
-    */
-
-    // 如果沒遇到特殊字元 , 就將 char 收集起來
-    if(current !== '\r') collected += current;
-}
-``` 
-
-### 第三步，定義關鍵的狀態
+### 第二步，定義關鍵的狀態
 
 ```JS
 const STATUS = {
@@ -60,16 +42,16 @@ const STATUS = {
 }
 ``` 
 
-### 第四步，準備 tokens 陣列，用來收集 token & 清空 collected 的函式
+### 第三步，準備 tokens 陣列，用來收集 token & 清空 collected 的函式
 
 ```JS
 const tokens = [];
 const resetCollect = () => collected = '';
 ``` 
 
-### 第五步，實作昨天分析的狀態變化規則
+### 第四步，實作昨天分析的狀態變化規則
 
-> 5.1 - NORMAL 的狀態變化
+> 4.1 - NORMAL 的狀態變化
 
 ```JS
 const handle_NORMAL = current => {
@@ -98,7 +80,7 @@ const handle_NORMAL = current => {
 }
 ``` 
 
-> 5.2 - IN_QUOTATION 的狀態變化
+> 4.2 - IN_QUOTATION 的狀態變化
 
 ```JS
 const handle_IN_QUOTATION = current => {
@@ -117,7 +99,7 @@ const handle_IN_QUOTATION = current => {
 }
 ``` 
 
-> 5.3 - IN_COMMENT 的狀態變化
+> 4.3 - IN_COMMENT 的狀態變化
 
 ```JS
 const handle_IN_COMMENT = current => {
@@ -136,7 +118,7 @@ const handle_IN_COMMENT = current => {
 }
 ``` 
 
-> 5.4 - AFTER_EQUAL 的狀態變化
+> 4.4 - AFTER_EQUAL 的狀態變化
 
 ```JS
 const handle_AFTER_EQUAL = current => {
