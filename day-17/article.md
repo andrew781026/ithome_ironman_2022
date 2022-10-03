@@ -5,8 +5,11 @@
 > 改良方式 : token.type === 'tagStart' / 'tagSelfClose' ，建立 node 時多取得 token.attrStr 資訊即可
 
 ```javascript
- const old_node = {type: token.name , children: []}; // 原先沒有 attrStr 的 node
- const new_node = {type: token.name, attrStr: token.attrStr, children: []}; // 新的有 attrStr 的 node
+// 原先沒有 attrStr 的 node
+const old_node = {type: token.name , children: []};
+
+// 新的有 attrStr 的 node
+const new_node = {type: token.name, attrStr: token.attrStr, children: []}; 
 ```
 
 #### 轉換出來的 AST
@@ -114,7 +117,7 @@ const attrs = [
 
 ### 狀態圖
 
-![狀態圖](https://i.imgur.com/0Z7Z7ZM.png)
+![狀態圖](https://raw.githubusercontent.com/andrew781026/ithome_ironman_2022/main/day-17/attrStr-status-map.png)
 
 ### 程式碼
 
