@@ -27,6 +27,7 @@ class AttrTokenizer {
     resetCollect = () => this.collected = '';
     collectChar = char => this.collected += char;
     setCurrStatus = status => this.CURR_STATUS = status;
+    isLastChar = () => this.charList.length === 1;
 
     /**
      * 將取到的屬性值放入 token list 中
@@ -90,10 +91,10 @@ class AttrTokenizer {
             return;
         }
 
-        // IN_ATTR_NAME 狀態時遇到 `/` or `>` or ` `，收集資料，切換狀態成 INITIAL
-        if (current === '/' || current === '>' || current === ' ') {
+        // IN_ATTR_NAME 狀態時遇到  ` ` or 最後一個字，收集資料當作 attrName，切換狀態成 INITIAL
+        if (current === ' ' || this.isLastChar()) {
             this.setCurrStatus(STATUS.INITIAL);
-            this.setAttrName(this.collected, true);
+            this.setAttrName((this.collected + current).trim(), true);
             this.resetCollect();
             this.removeCurr();
             return;
@@ -109,10 +110,10 @@ class AttrTokenizer {
         const current = this.getCurr();
         const {STATUS} = AttrTokenizer;
 
-        // IN_ATTR_VALUE 狀態時遇到 `/` or `>` or ` `，收集資料，切換狀態成 INITIAL
-        if (current === '/' || current === '>' || current === ' ') {
+        // IN_ATTR_VALUE 狀態時遇到  ` ` or 最後一個字，收集資料，切換狀態成 INITIAL
+        if (current === ' ' || this.isLastChar()) {
             this.setCurrStatus(STATUS.INITIAL);
-            this.setAttrValue(this.collected);
+            this.setAttrValue((this.collected + current).trim());
             this.resetCollect();
             this.removeCurr();
             return;
@@ -175,7 +176,7 @@ class AttrTokenizer {
         this.removeCurr();
     }
 
-    transform() {
+    tokenize() {
         const {STATUS} = AttrTokenizer;
         while (this.charList.length > 0) {
 

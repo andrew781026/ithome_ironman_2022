@@ -89,8 +89,9 @@ const attrs = [
 ### 關鍵的字元
 
 - 空白 ( ) : 當屬性值(attrValue) 沒有被 " 或 ' 包住時可視為結束的位置
-- " : 屬性值(attrValue) 會被 " 包住時，而且 " " 成對出現 ( 第二個 " 出現前遇到 ' 視為單純的文字 )
-- ' : 屬性值(attrValue) 會被 ' 包住時，而且 ' ' 成對出現 ( 第二個 ' 出現前遇到 " 視為單純的文字 )
+- 雙引號 " : 屬性值(attrValue) 會被 " 包住時，而且 " " 成對出現 ( 第二個 " 出現前遇到 ' 視為單純的文字 )
+- 單引號 ' : 屬性值(attrValue) 會被 ' 包住時，而且 ' ' 成對出現 ( 第二個 ' 出現前遇到 " 視為單純的文字 )
+- 等號 = : 右側的文字視為屬性值(attrValue)
 
 ### 關鍵的狀態
 
@@ -104,10 +105,10 @@ const attrs = [
 
 1. INITIAL 狀態下遇到 `英文字母` ，切換狀態為 IN_ATTR_NAME
 2. IN_ATTR_NAME 狀態下遇到 `=` 會將 collected 變數中的內容當作 attrName，切換狀態成 IN_ATTR_VALUE
-3. IN_ATTR_NAME 狀態下遇到 `/` or `>` or ` ` 會將 collected 變數中的內容當作 attrName，切換狀態成 INITIAL ( 例： disabled )
+3. IN_ATTR_NAME 狀態下遇到 ` ` or 最後一個字 會將 collected 變數中的內容當作 attrName，切換狀態成 INITIAL ( 例： disabled )
 4. IN_ATTR_VALUE 狀態下遇到 `'` ，切換狀態為 IN_SINGLE_QUOTATION
 5. IN_ATTR_VALUE 狀態下遇到 `"` ，切換狀態為 IN_DOUBLE_QUOTATION
-6. IN_ATTR_VALUE 狀態下遇到 `/` or `>` or ` ` 會將 collected 變數中的內容當作 attrValue，切換狀態成 INITIAL ( 例： type=text )
+6. IN_ATTR_VALUE 狀態下遇到 ` ` or 最後一個字 會將 collected 變數中的內容當作 attrValue，切換狀態成 INITIAL ( 例： type=text )
 7. IN_SINGLE_QUOTATION 狀態下遇到 `'` ，切換狀態為 INITIAL，並將 collected 變數中的內容當作 attrValue
 8. IN_DOUBLE_QUOTATION 狀態下遇到空格 `"` ，切換狀態為 INITIAL，並將 collected 變數中的內容當作 attrValue
 
@@ -117,13 +118,13 @@ const attrs = [
 
 ### 程式碼
 
-[完整程式碼 attr-transformer.js 請到 github 上查看](https://github.com/andrew781026/ithome_ironman_2022/blob/main/html-parser/attr-transformer.js)
+[完整程式碼 attr-transformer.js 請到 github 上查看](https://github.com/andrew781026/ithome_ironman_2022/blob/main/html-parser/attrStr-tokenizer.js)
 
 ---
 
 也就是說我們經歷了下圖的流程，得到了一個漂亮的 newAst
 
-![new_flow](https://github.com/andrew781026/ithome_ironman_2022/blob/main/day-17/new-flow.png)
+![new_flow](https://raw.githubusercontent.com/andrew781026/ithome_ironman_2022/main/day-17/new-flow.png)
 
 ---
 
