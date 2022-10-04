@@ -4,7 +4,8 @@
 
 演算法中有個經典的問題：樹狀結構，要把它的每個節點都拜訪一次呢？
 
-> 用途：[day-17] 的樹狀結構，走訪每個 node 就可以將每個 node 的 attrStr 轉換成 attrs ( •̀ ω •́ )✧
+> 用途：[day-17] 的樹狀結構，走訪每個 node 就可以將每個 node 的 attrStr 轉換成 attrs 
+> ( •̀ ω •́ )✧
 
 ![day-17-ast](https://raw.githubusercontent.com/andrew781026/ithome_ironman_2022/main/day-19/day-17-tree.png)
 
