@@ -1,0 +1,39 @@
+{
+  "type": "root",
+  "children": [
+    {
+      "type": "div",
+      "attrStr": "id=\"app\"",
+      "children": [
+        {
+          "type": "p",
+          "attrStr": "class=\"text-red\"",
+          "children": [
+            {
+              "type": "text",
+              "content": "Vue"
+            }
+          ]
+        },
+        {
+          "type": "input",
+          "attrStr": "type=\"text\" id=\"username\" placeholder=\"請輸入姓名\" disabled"
+        },
+        {
+          "type": "img",
+          "attrStr": "src=\"https://ithelp.ithome.com.tw/storage/image/fight.svg\"\r\n         alt='\"圖片\"'"
+        },
+        {
+          "type": "p",
+          "attrStr": "style=\"margin-top: 3px\"",
+          "children": [
+            {
+              "type": "text",
+              "content": "\"Template\""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

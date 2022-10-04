@@ -42,7 +42,7 @@ const tokenizer = htmlStr => {
                     resetCollect();
 
                 }else{
-                    tokens.push({type: 'text', value: collected});
+                    tokens.push({type: 'text', content: collected});
                     resetCollect();
                 }
             }
