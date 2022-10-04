@@ -37,7 +37,7 @@ const tokenizer = htmlStr => {
             if (collected.length > 0) {
 
                 // 如果只有 \r \n \t 空白字元，就不要當作 text content
-                if( collected.replace( /[ \r\n]/ig,'' ).length === 0 ){
+                if(  !/[^\r\n\s\t]/gi.test(collected) ){
 
                     resetCollect();
 
@@ -105,7 +105,7 @@ const tokenizer = htmlStr => {
 
         if (current === '>') {
             if (collected.length > 0) {
-                tokens.push({type: 'tagStart', name: collected});
+                tokens.push({type: 'tagEnd', name: collected});
                 resetCollect();
                 CURR_STATUS = STATUS.INITIAL;
             } else throw new Error('< 跟 > 之間需要有 alpahbet 文字');

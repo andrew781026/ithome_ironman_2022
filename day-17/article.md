@@ -17,7 +17,7 @@ const new_node = {type: token.name, attrStr: token.attrStr, children: []};
 ```javascript
 const ast = {
     "type": "root",
-    "children": [
+        "children": [
         {
             "type": "div",
             "attrStr": "id=\"app\"",
@@ -28,37 +28,23 @@ const ast = {
                     "children": [
                         {
                             "type": "text"
-                        },
+                        }
+                    ]
+                },
+                {
+                    "type": "input",
+                    "attrStr": "type=\"text\" id=\"username\" placeholder=\"請輸入姓名\" disabled"
+                },
+                {
+                    "type": "img",
+                    "attrStr": "src=\"https://ithelp.ithome.com.tw/storage/image/fight.svg\"\r\n         alt='\"圖片\"'"
+                },
+                {
+                    "type": "p",
+                    "attrStr": "style=\"margin-top: 3px\"",
+                    "children": [
                         {
-                            "type": "p",
-                            "children": [
-                                {
-                                    "type": "input",
-                                    "attrStr": "type=\"text\" id=\"username\" placeholder=\"請輸入姓名\" disabled"
-                                },
-                                {
-                                    "type": "img",
-                                    "attrStr": "src=\"https://ithelp.ithome.com.tw/storage/image/fight.svg\"\r\n         alt='\"圖片\"'"
-                                },
-                                {
-                                    "type": "p",
-                                    "attrStr": "style=\"margin-top: 3px\"",
-                                    "children": [
-                                        {
-                                            "type": "text"
-                                        },
-                                        {
-                                            "type": "p",
-                                            "children": [
-                                                {
-                                                    "type": "div",
-                                                    "children": []
-                                                }
-                                            ]
-                                        }
-                                    ]
-                                }
-                            ]
+                            "type": "text"
                         }
                     ]
                 }
@@ -136,7 +122,7 @@ const attrs = [
 
 ### 程式碼
 
-[完整程式碼 attrStr-tokenizer.js 請到 github 上查看](https://github.com/andrew781026/ithome_ironman_2022/blob/main/html-parser/attrStr-tokenizer.js)
+[完整程式碼 attrStr-tokenizer.js 請到 github 上查看](https://github.com/andrew781026/ithome_ironman_2022/tree/main/day-18/attrStr-tokenizer.js)
 
 ---
 

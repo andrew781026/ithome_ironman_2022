@@ -1,15 +1,42 @@
-# [Day18] - HTML 的規範 - HTML SPEC 
+# [Day18] - HTML SPEC 的 Parser 部分
 
 ## HTML SPEC 是什麼 ?
 
-> From Wiki
+> 來自維基百科
 ```
 網頁超文字應用技術工作小組（英語：Web Hypertext Application Technology Working Group，縮寫：WHATWG），是一個以推動網路HTML標準為目的而成立的組織。在2004年，由Apple公司、Mozilla基金會和Opera軟體公司所組成。
 
 而 HTML SPEC 文件是將 網頁超文字應用技術工作小組（縮寫：WHATWG）定義的 HTML 規範整理成一份線上文件，讓開發者可以參考使用的 LIVE DOC。
 ```
 
-跟我們系列文章 htmlStr -> AST 有相關的章節是 [HTML SPEC 的第 13 章節 - HTML syntax](https://html.spec.whatwg.org/multipage/syntax.html#syntax)
+那麼 HTML SPEC 定義了哪些東西 ?
+
+> HTML SPEC 目錄
+1. Introduction
+2. Common infrastructure
+3. Semantics, structure, and APIs of HTML documents
+4. The elements of HTML
+5. Microdata
+6. User interaction
+7. Loading web pages
+8. Web application APIs
+9. Communication
+10. Web workers
+11. Worklets
+12. Web storage
+13. The HTML syntax
+14. The XML syntax
+15. Rendering
+16. Obsolete features
+17. IANA considerations
+
+而最近我們所關注的是 [13. The HTML syntax](https://html.spec.whatwg.org/multipage/syntax.html#syntax) 的部分，也就是規範如何將 htmlStr 轉換成 AST 的章節。
+
+----
+
+下面我們就來找找看，HTML SPEC 的第 13 章節 - HTML syntax 上面與分析步驟對應的位置。
+
+![找找看](https://raw.githubusercontent.com/andrew781026/ithome_ironman_2022/main/day-18/find.png)
 
 ---
 
@@ -20,12 +47,6 @@
 3. 找出關鍵的狀態
 4. 狀態轉換的條件
 5. 狀態圖
-
-----
-
-下面我們就來找找看，HTML SPEC 的第 13 章節 - HTML syntax 上面與分析步驟對應的位置。
-
-![找找看](https://raw.githubusercontent.com/andrew781026/ithome_ironman_2022/main/day-18/find.png)
 
 #### HTML 規則 & 關鍵的字元 <=> [13.2.2.1 Start tags](https://html.spec.whatwg.org/multipage/syntax.html#start-tags)
 
