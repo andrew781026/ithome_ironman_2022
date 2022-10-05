@@ -4,7 +4,7 @@
 
 day-10 到 day-19 我們花了 10 天說明如何將 HTML 轉換成 AST， 經歷了下圖的流程
 
-![tokenizer-parser-transformer]()
+![tokenizer-parser-transformer](https://raw.githubusercontent.com/andrew781026/ithome_ironman_2022/main/day-20/tokenizer-parser-transformer.png)
 
 那當我們拿到 AST 之後，我們要怎麼像 Vue 一樣將它放到網頁中呢？
 
@@ -146,6 +146,64 @@ li01.appendChild(textNode);
 
 ## 建立渲染器 createRenderer
 
+建立 HTML DOM 其實就是將 AST 遍歷一次，並做對應的 createElement, setAttribute, appendChild 動作。
+
+既然如此我們就直接拿 day-19 的 BFS 或是 DFS 來用
+
+並且修改一下 transformer，讓它可以建立 HTML DOM
+
+```javascript
+const transformer = () => {
+
+  const appender = node => {
+
+    // console.log('node=',node);
+
+    // ROOT 節點
+    if (node.type === 'root') {
+      const root = document.createElement('template');
+      root.setAttribute('data-type', 'root');
+      node.element = root;
+      node.children?.forEach(child => child.parentElement = root);
+    }
+
+    // text 節點
+    else if (node.type === 'text') {
+      const textNode = document.createTextNode(node.content);
+      node.parentElement.appendChild(textNode);
+    }
+
+    // element 節點
+    else {
+      const element = document.createElement(node.type);
+      node.element = element;
+
+      // 追加屬性
+      node.attrs?.forEach(attr => element.setAttribute(attr.name, attr.value));
+
+      // 提示父元素
+      node.children?.forEach(child => child.parentElement = node.element);
+
+      // 將 element 附加到父元素上
+      node.parentElement?.appendChild(element);
+    }
+
+    return node;
+  }
+
+  return {
+    appender,
+  }
+};
+
+export function createRenderer() {
+  const {appender} = transformer();
+  return {
+    render: ast => dfs(ast, appender),
+  };
+}
+```
+
 ## 將 AST 附加到網頁的 body 中
 
 複習一下昨天最後的 newAST 結果
@@ -243,7 +301,9 @@ const newAST = {
 ```javascript
 const renderer = createRenderer();
 const body = document.querySelector("body");
-body.appendChild(renderer.render(newAST));
+const dom = renderer.render(newAST);
+const childrenElements = Array.from(dom.element.children);
+childrenElements.forEach(child => body.appendChild(child));
 ```
 
 ## 總結
@@ -256,5 +316,3 @@ body.appendChild(renderer.render(newAST));
 
 - [HTML SPEC - rendering](https://html.spec.whatwg.org/multipage/#toc-rendering)
 - [書籍 - Vue.js 設計與實現](https://www.tenlong.com.tw/products/9787115583864) - 第 7 . 8 章
-- [Chiu CC - Graph: Breadth-First Search(BFS，廣度優先搜尋)](https://alrightchiu.github.io/SecondRound/graph-breadth-first-searchbfsguang-du-you-xian-sou-xun.html)
-- [JavaScript实现深度优先（DFS）和广度优先（BFS）算法](https://juejin.cn/post/6956172064252231717)

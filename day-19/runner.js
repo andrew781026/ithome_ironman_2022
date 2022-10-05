@@ -5,13 +5,13 @@ const bfs = require("./bfs");
 const plugin = () => ({
   visitor: {
     ALL(node) {
-      // 所有類型的 node 都會進入此函示處理
+      // 所有類型的 node 都會進入此函式處理
       if (node.type !== 'text' && node.attrStr) {
         node.attrs = new AttrTokenizer(node.attrStr).tokenize();
       }
     },
     text(node) {
-      // 只有 type = "text" 的 node 會進入此函示處理
+      // 只有 type = "text" 的 node 會進入此函式處理
       console.log('text node=', node.content);
     }
   }

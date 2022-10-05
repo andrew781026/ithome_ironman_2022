@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app"></div>
+
+<!-- module 會依照順序被執行 -->
+<script type="module" src="./createRenderer.js"></script>
+<script type="module">
+  import {createRenderer} from './createRenderer.js';
+
+  const newAST = {
+    "type": "root",
+    "children": [
+      {
+        "type": "div",
+        "attrStr": "id=\"app\"",
+        "children": [
+          {
+            "type": "p",
+            "attrStr": "class=\"text-red\"",
+            "children": [
+              {
+                "type": "text",
+                "content": "Vue"
+              }
+            ],
+            "attrs": [
+              {
+                "name": "class",
+                "value": "text-red"
+              }
+            ]
+          },
+          {
+            "type": "input",
+            "attrStr": "type=\"text\" id=\"username\" placeholder=\"請輸入姓名\" disabled",
+            "attrs": [
+              {
+                "name": "type",
+                "value": "text"
+              },
+              {
+                "name": "id",
+                "value": "username"
+              },
+              {
+                "name": "placeholder",
+                "value": "請輸入姓名"
+              },
+              {
+                "name": "disabled",
+                "value": true
+              }
+            ]
+          },
+          {
+            "type": "img",
+            "attrStr": "src=\"https://ithelp.ithome.com.tw/storage/image/fight.svg\"\r\n         alt='\"圖片\"'",
+            "attrs": [
+              {
+                "name": "src",
+                "value": "https://ithelp.ithome.com.tw/storage/image/fight.svg"
+              },
+              {
+                "name": "alt",
+                "value": "\"圖片\""
+              }
+            ]
+          },
+          {
+            "type": "p",
+            "attrStr": "style=\"margin-top: 3px\"",
+            "children": [
+              {
+                "type": "text",
+                "content": "\"Template\""
+              }
+            ],
+            "attrs": [
+              {
+                "name": "style",
+                "value": "margin-top: 3px"
+              }
+            ]
+          }
+        ],
+        "attrs": [
+          {
+            "name": "id",
+            "value": "app"
+          }
+        ]
+      }
+    ]
+  }
+
+  const renderer = createRenderer('#app');
+  const dom = renderer.render(newAST);
+  Array.from(dom.element.children).forEach(child => document.body.appendChild(child));
+</script>
+</body>
+</html>
