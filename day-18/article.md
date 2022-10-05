@@ -101,6 +101,35 @@ insertion mode 就是我們之前所說的 `狀態`
 
 其他章節的內容，會描述其他的事情，例如 [第 15 章 - Rendering](https://html.spec.whatwg.org/multipage/#toc-rendering) 就是描述 ast 如何 render 成 HTML DOM 的過程
 
+---
+
+### 題外話
+
+瀏覽器有提供一個 API - [DOMParser.parseFromString](https://developer.mozilla.org/en-US/docs/Web/API/DOMParser/parseFromString) 
+讓我們可以輕鬆建立 HTML DOM 元素 (@^0^@)/
+
+#### 範例
+
+```javascript
+const parser = new DOMParser();
+
+const htmlString = "<strong>Beware of the leopard</strong>";
+const doc3 = parser.parseFromString(htmlString, "text/html");
+/* 
+#docuemnt
+  <html>
+    <head></head>
+    <body>
+      <strong>
+        Beware of the leopard
+      </strong>
+    </body>
+  </html>
+*/
+```
+
+`DOMParser.parseFromString` 會將我們傳入的字串，補上 `<html>` . `<head>` . `<body>` 轉換成 document 物件回傳
+
 ### 參考資料
 
 - [html.spec - parsing](https://html.spec.whatwg.org/multipage/parsing.html)

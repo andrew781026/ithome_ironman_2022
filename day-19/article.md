@@ -4,7 +4,7 @@
 
 演算法中有個經典的問題：樹狀結構，要把它的每個節點都拜訪一次呢？
 
-> 用途：[day-17] 的樹狀結構，走訪每個 node 就可以將每個 node 的 attrStr 轉換成 attrs 
+> 用途：[day-17] 的樹狀結構，走訪每個 node 就可以將每個 node 的 attrStr 轉換成 attrs   
 > ( •̀ ω •́ )✧
 
 ![day-17-ast](https://raw.githubusercontent.com/andrew781026/ithome_ironman_2022/main/day-19/day-17-tree.png)
@@ -81,9 +81,11 @@ function bfs(ast) {
 
 NOTE： logger 這個函式每次遇到新的 node 時，都會被呼叫一次
 
-如果將 logger 改成 transformer 的話，就可以在每次遇到一個 node 時，執行我們想要那個 node 多做的事情，例如將 attrStr 的 tokenize。
+如果將 logger 改成 transformer 的話，就可以在每次遇到一個 node 時，執行我們想要那個 node 多做的事情，例如將 attrStr 做 tokenize。
 
 ```diff
++ const transformer = require("./transformer");
+
 function dfs(ast) {
   ...
 
@@ -95,7 +97,10 @@ function dfs(ast) {
 }
 ```
 
+> 補一些工具方法
+
 ```javascript
+// pluginManager.js
 class PluginManager {
   plugins = [];
 
@@ -112,25 +117,12 @@ class PluginManager {
   }
 }
 
-const plugin = () => ({
-  visitor: {
-    ALL(node) {
-      // 所有類型的 node 都會進入此函示處理
-      if (node.type !== 'text') {
-        node.attrs = new AttrTokenizer(node.attrStr).tokenize();
-        return;
-      }
-    },
-    text(node) {
-      // 只有 type = "text" 的 node 會進入此函示處理
-      console.log('text node=', node.content);
-    }
-  }
-});
-
 const pluginManager = new PluginManager();
-pluginManager.add(plugin());
+module.exports = pluginManager;
+```
 
+```javascript
+// transformer.js
 const transformer = node => {
   const plugins = pluginManager.get();
 
@@ -145,6 +137,36 @@ const transformer = node => {
     typeHandler && typeHandler(node);
   }
 };
+```
+
+> 我們來執行一下 O(∩_∩)O
+
+```
+// app.js
+const AttrTokenizer = require("../day-18/attrStr-tokenizer");
+const pluginManager = require("./pluginManager");
+const dfs = require("./dfs");
+
+const plugin = () => ({
+  visitor: {
+    ALL(node) {
+      // 所有類型的 node 都會進入此函示處理
+      if (node.type !== 'text' && node.attrStr) {
+        node.attrs = new AttrTokenizer(node.attrStr).tokenize();
+      }
+    },
+    text(node) {
+      // 只有 type = "text" 的 node 會進入此函示處理
+      console.log('text node=', node.content);
+    }
+  }
+});
+
+pluginManager.add(plugin);
+
+const ast = require("./ast.json");
+const newAST = dfs(ast);
+console.log('newAST=', JSON.stringify(newAST, null, 2));
 ```
 
 如果我們查看 BABEL [撰寫你的第一個 Babel 外掛](https://github.com/jamiebuilds/babel-handbook/blob/master/translations/zh-Hant/plugin-handbook.md#toc-writing-your-first-babel-plugin) 的範例，
@@ -178,4 +200,3 @@ export default function ({types: t}) {
 - [吾居無束 - 廣度優先搜尋法(Breadth-first Search)](http://simonsays-tw.com/web/DFS-BFS/BreadthFirstSearch.html)
 - [Chiu CC - Graph: Breadth-First Search(BFS，廣度優先搜尋)](https://alrightchiu.github.io/SecondRound/graph-breadth-first-searchbfsguang-du-you-xian-sou-xun.html)
 - [JavaScript实现深度优先（DFS）和广度优先（BFS）算法](https://juejin.cn/post/6956172064252231717)
-
