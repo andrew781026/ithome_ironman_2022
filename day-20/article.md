@@ -16,6 +16,8 @@ day-10 到 day-19 我們花了 10 天說明如何將 HTML 轉換成 AST， 經�
 - 將 attrs 放到 element 中
 - 將 child element 放到 parent element 中
 
+下面我們來說明一下這些重要的 POINT，對應的 HTML API 各是什麼？ 與如何使用他們
+
 ---
 
 ### 建立元素 ( createElement )
