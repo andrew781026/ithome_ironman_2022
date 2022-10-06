@@ -18,7 +18,11 @@
 
 還沒買書的邦友，可以先去看一下 (＠＾０＾)
 
+---
+
 - [dragon book - 編譯原理](https://www-2.dc.uba.ar/staff/becher/dragon.pdf)
+
+![dragon-book](https://raw.githubusercontent.com/andrew781026/ithome_ironman_2022/main/day-21/dragon-book.png)
 
 經典的 Compiler 書籍，是 EDX - Compilers 課程中教授推薦的書籍
 
@@ -46,10 +50,13 @@ AST Explorer 是一個可以讓邦友們在網頁上 Parse 程式碼，並且顯
 
 [![github-search-acorn](https://raw.githubusercontent.com/andrew781026/ithome_ironman_2022/main/day-21/github-search-acorn.png)](https://github.com/acornjs/acorn)
 
-- [jointjs - JAVASCRIPT AST VISUALIZER](https://resources.jointjs.com/demos/javascript-ast)
-- [svelte 在線編譯器](https://svelte.dev/repl/hello-world?version=3.50.1)
+---
 
-- [Babel 在線編譯器](https://babeljs.io/repl)
+- [jointjs - JAVASCRIPT AST VISUALIZER](https://resources.jointjs.com/demos/javascript-ast)
+
+可以用圖形化的方式看 AST
+
+![jointJS](https://raw.githubusercontent.com/andrew781026/ithome_ironman_2022/main/day-21/jointJS.png)
 
 ### 課程
 
@@ -58,3 +65,8 @@ AST Explorer 是一個可以讓邦友們在網頁上 Parse 程式碼，並且顯
 [![edx-compiler](https://raw.githubusercontent.com/andrew781026/ithome_ironman_2022/main/day-21/edx-compiler.png)](https://www.edx.org/course/compilers)
 
 史丹佛大學的 Compiler 線上課程，我覺得很不錯，推薦邦友們可以看看
+
+### 其他
+
+- [svelte 在線編譯器](https://svelte.dev/repl/hello-world?version=3.50.1)
+- [Babel 在線編譯器](https://babeljs.io/repl)
