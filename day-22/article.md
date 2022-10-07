@@ -17,7 +17,7 @@
 
 因此我們會希望 HTML 文字能夠有高亮顯示，方便我們查看 TAG 的配對。
 
-![html-pair](https://raw.githubusercontent.com/andrew781026/ithome_ironman_2022/main/day-22/html-pair.png)
+![html-highlight](https://raw.githubusercontent.com/andrew781026/ithome_ironman_2022/main/day-22/html-highlight.gif)
 
 下面我們要介紹的是 [CodeMirror 6](https://codemirror.net/) 
 
