@@ -25520,6 +25520,7 @@
    });
 
    new EditorView({
+     doc: "The document\nis\nshared",
      extensions: [
        basicSetup,
        // javascript(),

@@ -52,3 +52,6 @@ html . pug . markdown . yaml . json . xml . csv . toml . ini . properties . sql 
 - [css-consume-token](https://www.w3.org/TR/css-syntax-3/#consume-token)
 - [the-super-tiny-compiler](https://github.com/jamiebuilds/the-super-tiny-compiler)
 - [jointjs - AST 顯示範例](https://resources.jointjs.com/demos/javascript-ast)
+
+- [手寫一個Parser - 程式碼簡單而功能強大的Pratt Parsing](https://iter01.com/663923.html)
+- [simple-but-powerful-pratt-parsing](https://matklad.github.io/2020/04/13/simple-but-powerful-pratt-parsing.html) - Pratt parsing — the monad tutorial of syntactic analysis.
