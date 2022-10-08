@@ -1,0 +1,115 @@
+@import "_color.scss"; // 會將 _color.scss 的內容全部輸出
+
+// @use "_text.scss";      // 一定要放在 @forward 之前，且只會輸出有在目標檔案中有使用到的部分，可設定 Namespace
+// @forward "_space.scss"; // 只會輸出有在目標檔案中有使用到的部分
+
+@debug "Debugging";
+@warn "This is a warning";
+@error "error happened";
+
+
+// @mixin 定義一些重複使用的樣式，用 @include 來複製它
+@mixin reset-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@mixin horizontal-list {
+  @include reset-list;
+
+  li {
+    display: inline-block;
+    margin: {
+      left: -2px;
+      right: 2em;
+    }
+  }
+}
+
+nav ul {
+  @include horizontal-list;
+}
+
+
+// extend 可以將一個 class 的樣式複製到另一個 class 中
+.error:hover {
+  background-color: #fee;
+}
+
+.error--serious {
+  @extend .error;
+  border-width: 3px;
+}
+/*
+.error:hover, .error--serious:hover {
+  background-color: #fee;
+}
+
+.error--serious {
+  border-width: 3px;
+}
+ */
+
+
+// Nesting
+nav {
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li { display: inline-block; }
+
+  a {
+    display: block;
+    padding: 6px 12px;
+    text-decoration: none;
+  }
+
+  // parent selector
+  [dir=rtl] & {
+    margin-left: 0;
+    margin-right: 10px;
+  }
+}
+
+// Placeholder Selectors
+%toolbelt {
+  box-sizing: border-box;
+  border-top: 1px rgba(#000, .12) solid;
+  padding: 16px 0;
+  width: 100%;
+
+  &:hover { border: 2px rgba(#000, .5) solid; }
+}
+
+.action-buttons {
+  @extend %toolbelt;
+  color: #4285f4;
+}
+
+.reset-buttons {
+  @extend %toolbelt;
+  color: #cddc39;
+}
+/*
+.action-buttons, .reset-buttons {
+  box-sizing: border-box;
+  border-top: 1px rgba(0, 0, 0, 0.12) solid;
+  padding: 16px 0;
+  width: 100%;
+}
+.action-buttons:hover, .reset-buttons:hover {
+  border: 2px rgba(0, 0, 0, 0.5) solid;
+}
+
+.action-buttons {
+  color: #4285f4;
+}
+
+.reset-buttons {
+  color: #cddc39;
+}
+ */

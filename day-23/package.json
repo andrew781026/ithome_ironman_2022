@@ -1,0 +1,14 @@
+{
+  "name": "dart-scss-parctice",
+  "version": "0.0.1",
+  "description": "use dart-sass to compile scss",
+  "scripts": {
+    "compile": "sass src/app.scss dist/output.css"
+  },
+  "keywords": [],
+  "author": "andrew",
+  "license": "MIT",
+  "dependencies": {
+    "sass": "^1.55.0"
+  }
+}

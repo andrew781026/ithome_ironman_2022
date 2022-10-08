@@ -34,6 +34,11 @@ html . pug . markdown . yaml . json . xml . csv . toml . ini . properties . sql 
 
 ### 一些參考資料
 
+
+> git-book
+ 
+- [simple-compiler](https://jaceju.net/simple-compiler/3-2.html)
+
 - [AST Explorer](https://astexplorer.net/)
 - [快速了解 Tailwind CSS 的 JIT 模式](https://ithelp.ithome.com.tw/articles/10244180)
 - [《來做個網路瀏覽器吧！》文章列表](https://tigercosmos.xyz/post/2018/02/browser/browser_series_33/)
@@ -43,7 +48,6 @@ html . pug . markdown . yaml . json . xml . csv . toml . ini . properties . sql 
 - [一點都不深入的了解 Compiler、 Interpreter 和 VM](https://www.spreered.com/compiler_for_dummies/)
 - [編譯器概論–游逸平](https://hackmd.io/@idoleat/ry2IPtqnQ)
 - [ntnu - Language](https://web.ntnu.edu.tw/~algo/Language.html)
-- [simple-compiler](https://jaceju.net/simple-compiler/3-2.html)
 - [前端工程师的编译原理指南-「有限状态机」](https://zhuanlan.zhihu.com/p/467298647)
 - [前端工程师的编译原理指南-「编译器工作流程」](https://juejin.cn/post/7062687356402270244)
 - [craftinginterpreters](http://craftinginterpreters.com/scanning.html)
@@ -55,3 +59,7 @@ html . pug . markdown . yaml . json . xml . csv . toml . ini . properties . sql 
 
 - [手寫一個Parser - 程式碼簡單而功能強大的Pratt Parsing](https://iter01.com/663923.html)
 - [simple-but-powerful-pratt-parsing](https://matklad.github.io/2020/04/13/simple-but-powerful-pratt-parsing.html) - Pratt parsing — the monad tutorial of syntactic analysis.
+
+
+- [Source Map Revision 3 Proposal](https://docs.google.com/document/d/1U1RGAehQwRypUTovF1KRlpiOFze0b-_2gc6fAH0KY0k/edit)
+- [Source map 運作原理](https://blog.techbridge.cc/2021/03/28/how-source-map-works/)
