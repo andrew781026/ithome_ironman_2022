@@ -178,9 +178,9 @@ sup {
 
 ```scss
 // SCSS 
-@debug "hello world";  // 執行時會輸出訊息 "src\app.scss:6 Debug: Debugging"
-@warn "hello world";   // 執行時會輸出訊息 "Warning: This is a warning \n src\app.scss 7:1  root stylesheet"
-@error "hello world";  // 執行時會輸出訊息 "sass.Exception [Error]: "error happened"" 並中斷編譯的執行
+@debug "Debugging";  // 執行時會輸出訊息 "src\app.scss:6 Debug: Debugging"
+@warn "This is a warning";   // 執行時會輸出訊息 "Warning: This is a warning \n src\app.scss 7:1  root stylesheet"
+@error "error happened";  // 執行時會輸出訊息 "sass.Exception [Error]: "error happened"" 並中斷編譯的執行
 ```
 
 ![all-info](https://raw.githubusercontent.com/andrew781026/ithome_ironman_2022/main/day-23/all-info.png)
