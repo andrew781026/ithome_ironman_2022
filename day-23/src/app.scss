@@ -2,11 +2,11 @@
 
 // @use "_text.scss";      // 一定要放在 @forward 之前，且只會輸出有在目標檔案中有使用到的部分，可設定 Namespace
 // @forward "_space.scss"; // 只會輸出有在目標檔案中有使用到的部分
-
+/*
 @debug "Debugging";
 @warn "This is a warning";
 @error "error happened";
-
+*/
 
 // @mixin 定義一些重複使用的樣式，用 @include 來複製它
 @mixin reset-list {
