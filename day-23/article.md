@@ -172,9 +172,9 @@ sup {
 
 ### 輸出訊息
 
-- @error
-- @warn
 - @debug
+- @warn
+- [@error](https://sass-lang.com/documentation/at-rules/error)
 
 ```scss
 // SCSS 
@@ -249,26 +249,24 @@ sup {
 }
 ```
 
-- @mixin / @include : @mixin 定義區塊重用的樣式，並在需要使用的地方使用 @include
+- [@mixin / @include](https://sass-lang.com/documentation/at-rules/mixin) : @mixin 定義區塊重用的樣式，可以傳入參數，並在需要使用的地方使用 @include
 
 ```scss
 // SCSS 樣式
-@mixin reset-list {
-  margin: 0;
-  padding: 0;
-  list-style: none;
+@mixin replace-text($image, $x: 50%, $y: 50%) {
+  text-indent: -99999em;
+  overflow: hidden;
+  text-align: left;
+
+  background: {
+    image: $image;
+    repeat: no-repeat;
+    position: $x $y;
+  }
 }
 
-@mixin horizontal-list {
-  @include reset-list;
-
-  li {
-    display: inline-block;
-    margin: {
-      left: -2px;
-      right: 2em;
-    }
-  }
+.mail-icon {
+  @include replace-text(url("/images/mail.svg"), 0);
 }
 
 nav ul {
@@ -276,15 +274,13 @@ nav ul {
 }
 
 // 轉換後的 CSS 樣式
-nav ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-nav ul li {
-  display: inline-block;
-  margin-left: -2px;
-  margin-right: 2em;
+.mail-icon {
+  text-indent: -99999em;
+  overflow: hidden;
+  text-align: left;
+  background-image: url("/images/mail.svg");
+  background-repeat: no-repeat;
+  background-position: 0 50%;
 }
 ```
 
