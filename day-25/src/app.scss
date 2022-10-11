@@ -1,0 +1,12 @@
+@import "_color.scss"; // 會將 _color.scss 的內容全部輸出
+@import "_button.scss"; // 會將 _button.scss 的內容全部輸出
+
+@mixin reset-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+nav ul {
+  @include reset-list;
+}

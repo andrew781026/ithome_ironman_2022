@@ -6,13 +6,15 @@
 
 當我們使用 dart-sass 編譯 scss 檔案時，除了會輸出 output.css 檔案外，還會輸出 output.css.map 檔案，這個檔案就是 source-map 檔案。
 
+那多出來的 output.css.map 檔案有什麼用呢？它會記錄編譯用的檔案 & 目前出錯的位置資訊。
+
 ```
 {
   "version": 3,
   "sourceRoot": "",
-  "sources": ["../src/app.scss"],
+  "sources": ["../src/_button.scss", "../src/app.scss"],
   "names": [],
-  "mappings": "AAIA;AAAA;AAAA;AAAA;AAAA;AAyBA;EAjBE;EACA;EACA;;AAMA;EACE;EAEE;EACA;;;AAWN;EACE;;;AAGF;EAEE;;;AAEF;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;AAAA;AAaE;EACE;EACA;EACA;;AAGF;EAAK;;AAEL;EACE;EACA;EACA;;AAIF;EACE;EACA;;;AAKJ;EACE;EACA;EACA;EACA;;AAEA;EAAU;;;AAGZ;EAEE;;;AAGF;EAEE;;;AAEF;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;AAAA",
+  "mappings": ";AAAA;AAGA;AACA;EACE;;;AAGF;EACE;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;;AAGF;EACE;EACA;EACA;;;AAGF;EACE;EACA;EACA;;;AAGF;EACE;EACA;EACA;;;AAGF;EACE;EACA;EACA;EACA;;;AAGF;EACE;EACA;EACA;;;AAGF;EACE;EACA;EACA;;;AAGF;EACE;EACA;EACA;EACA;;;AAGF;EACE;;;AAGF;EACE;;;AAGF;EACE;;;AAGF;EACE;IACE;;;AC/EJ;AAAA;AAAA;AAAA;AAAA;AAyBA;EAjBE;EACA;EACA;;AAMA;EACE;EAEE;EACA;;;AAWN;EACE;;;AAGF;EAEE;;;AAEF;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;AAAA;AAaE;EACE;EACA;EACA;;AAGF;EAAK;;AAEL;EACE;EACA;EACA;;AAIF;EACE;EACA;;;AAKJ;EACE;EACA;EACA;EACA;;AAEA;EAAU;;;AAGZ;EAEE;;;AAGF;EAEE;;;AAEF;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;AAAA",
   "file": "output.css"
 }
 ```
@@ -38,3 +40,4 @@
 - [Source Map Revision 3 Proposal](https://docs.google.com/document/d/1U1RGAehQwRypUTovF1KRlpiOFze0b-_2gc6fAH0KY0k/edit)
 - [Source map 運作原理](https://blog.techbridge.cc/2021/03/28/how-source-map-works/)
 - [Rich-Harris/vlq](https://github.com/Rich-Harris/vlq)
+- [Introduction to JavaScript Source Maps](https://developer.chrome.com/blog/sourcemaps/)
