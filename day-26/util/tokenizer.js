@@ -5,6 +5,7 @@ class ScssTokenizer {
   tokens = [];
   collected = '';
   charList = [];
+  level = 0;
 
   // 關鍵的狀態
   static STATUS = {
@@ -30,6 +31,8 @@ class ScssTokenizer {
   isLastChar = () => this.charList.length === 1;
 
   addToken = token => this.tokens.push(token);
+
+  getLastToken = () => this.tokens[this.tokens.length - 1];
 
   patchLastToken = patch => {
     const lastToken = this.tokens[this.tokens.length - 1];
@@ -92,7 +95,8 @@ class ScssTokenizer {
       return;
     }
 
-    if (current === `{`) {
+    if (current === '{') {
+      this.level++;
       this.setCurrStatus(ScssTokenizer.STATUS.IN_BODY);
       this.addToken({type: 'css', selector: this.collected});
       this.resetCollect();
@@ -100,7 +104,7 @@ class ScssTokenizer {
       return;
     }
 
-    if (!['\r', '\n', ' '].includes(current)) this.collectChar(current);
+    if (!['\r', '\n'].includes(current)) this.collectChar(current);
     this.removeCurr();
   }
 
@@ -110,7 +114,7 @@ class ScssTokenizer {
 
     if (current === '\n') {
       this.setCurrStatus(ScssTokenizer.STATUS.INITIAL);
-      this.addToken({type: 'comment', value: this.collected});
+      // this.addToken({type: 'comment', value: this.collected});
       this.resetCollect();
       this.removeCurr();
       return;
@@ -124,12 +128,11 @@ class ScssTokenizer {
 
     const current = this.getCurr();
 
-    if (current === '*' && this.lookahead(1) === '/') {
+    if (current === '*' && this.lookahead(0) === '/') {
       this.setCurrStatus(ScssTokenizer.STATUS.INITIAL);
-      this.addToken({type: 'comment', value: this.collected});
-      this.removeCurr();
+      // this.addToken({type: 'comment', value: this.collected});
       this.resetCollect();
-      this.removeCurr();
+      this.removeFirstN(2);
       return;
     }
 
@@ -174,8 +177,9 @@ class ScssTokenizer {
     const current = this.getCurr();
 
     if (current === '{') {
+      this.level++;
       this.setCurrStatus(ScssTokenizer.STATUS.IN_BODY);
-      this.addToken({type: 'keyword', name: this.collected});
+      this.addToken({type: 'keyword', name:'@'+ this.collected.trim()});
       this.resetCollect();
       this.removeCurr();
       return;
@@ -183,7 +187,7 @@ class ScssTokenizer {
 
     if (current === ' ' || current === '\n') {
       this.setCurrStatus(ScssTokenizer.STATUS.IN_KEYWORD_VALUE);
-      this.addToken({type: 'keyword', name: this.collected});
+      this.addToken({type: 'keyword', name:'@'+ this.collected.trim()});
       this.resetCollect();
       this.removeCurr();
       return;
@@ -198,6 +202,7 @@ class ScssTokenizer {
     const current = this.getCurr();
 
     if (current === '{') {
+      this.level++;
       this.setCurrStatus(ScssTokenizer.STATUS.IN_BODY);
       this.patchLastToken({value: this.collected});
       this.resetCollect();
@@ -205,7 +210,7 @@ class ScssTokenizer {
       return;
     }
 
-    if (current === ';' ) {
+    if (current === ';') {
       this.setCurrStatus(ScssTokenizer.STATUS.INITIAL);
       this.patchLastToken({value: this.collected});
       this.resetCollect();
@@ -220,16 +225,34 @@ class ScssTokenizer {
   handle_IN_BODY() {
 
     const current = this.getCurr();
+    // 因為有槽狀的可能，所以要用 level 來記錄目前的狀態
 
-    if (current === '}') {
+    if (current === '{') {
+      this.level++;
+      this.collectChar(current);
+      this.removeCurr();
+      return;
+    }
+
+    if (current === '}' && --this.level === 0) {
       this.setCurrStatus(ScssTokenizer.STATUS.INITIAL);
-      this.addToken({type: 'body', content: this.collected});
+
+      const lastToken = this.getLastToken();
+      if (lastToken.type === 'css') {
+        this.patchLastToken({bodyContent: `{${this.collected}\}`,});
+      }
+      else if (lastToken.type === 'keyword') {
+        this.patchLastToken({bodyContent: `{${this.collected}\}`,});
+      }
+      else this.addToken({type: 'body', content: this.collected,});
+
+      if (this.collected.indexOf('{') > -1) this.patchLastToken({children: new ScssTokenizer(String(this.collected)).tokenize()});
       this.resetCollect();
       this.removeCurr();
       return;
     }
 
-    this.collectChar(current);
+    if (!['\r', '\n'].includes(current)) this.collectChar(current);
     this.removeCurr();
   }
 
