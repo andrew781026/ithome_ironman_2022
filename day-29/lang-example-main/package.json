@@ -1,10 +1,10 @@
 {
-  "name": "codemirror-lang-EXAMPLE",
+  "name": "codemirror-lang-practice",
   "version": "0.1.0",
   "description": "EXAMPLE language support for CodeMirror",
   "scripts": {
-    "generator": "lezer-generator src/lang.grammar -o dist/lang.js",
-    "editor-cjs": "rollup src/editor.js -c rollup-editor.config",
+    "grammar-cjs": "rollup src/grammar.js -c rollup-grammar.config.js",
+    "editor-cjs": "rollup src/editor.js -c rollup-editor.config.js",
     "prepare": "rollup -c"
   },
   "type": "module",

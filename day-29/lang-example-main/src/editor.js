@@ -1,11 +1,11 @@
 import {EditorView,basicSetup} from "codemirror"
-import {EXAMPLE} from "../dist"
+import {MyLang} from "../dist/myLang.js"
 
 let editor = new EditorView({
-  doc: "The document\nis\nshared",
+  doc: "(((8+9)+10)-20)", // ((((((((a=10))))))))
   extensions: [
     basicSetup,
-    EXAMPLE(),
+    MyLang(),
   ],
   parent: document.body
 })
