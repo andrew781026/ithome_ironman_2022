@@ -2,6 +2,7 @@
   "name": "day-28",
   "version": "1.0.0",
   "description": "",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "generator": "lezer-generator src/lang.grammar -o dist/lang.js"
@@ -14,7 +15,8 @@
   "author": "andrew",
   "license": "MIT",
   "dependencies": {
-    "@lezer/generator": "^1.1.1"
+    "@lezer/generator": "^1.1.1",
+    "@lezer/lr": "^1.2.3"
   },
   "devDependencies": {
     "rollup": "^3.1.0"
