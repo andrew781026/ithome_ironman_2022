@@ -53,8 +53,8 @@ BinaryExpression { "(" expression ("+" | "-") expression ")" }
 
 引入 `@lezer/highlight` 並設定要高亮的 token 類型
 
-- indentNodeProp - 代表這個 grammar 的開頭
-- foldNodeProp - 代表這個 grammar 的結尾
+- indentNodeProp - 設定 ( ) 的配對高亮
+- foldNodeProp - 代表語法是否可以摺疊
 - styleTags - 需要高亮的語法(定義在 .grammar 的 token 之中)
 
 ```javascript
@@ -108,7 +108,7 @@ import {EditorView,basicSetup} from "codemirror"
 import {MyLang} from "../dist/myLang.js"
 
 let editor = new EditorView({
-  doc: "(((8+9)+10)-20)", // ((((((((a=10))))))))
+  doc: "(((8+9)+10)-20)", 
   extensions: [
     basicSetup,
     MyLang(),
