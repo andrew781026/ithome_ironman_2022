@@ -1,0 +1,13 @@
+{
+  "name": "day-31",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "grammar-cjs": "rollup src/grammar.js -c rollup-grammar.config.js",
+    "editor-cjs": "rollup src/editor.js -c rollup-editor.config.js"
+  },
+  "keywords": [],
+  "author": "andrew",
+  "license": "MIT"
+}

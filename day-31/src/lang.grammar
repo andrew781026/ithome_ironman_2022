@@ -1,0 +1,19 @@
+@top Program { expression }
+
+expression {
+  Name |
+  Number |
+  BinaryExpression
+}
+
+@skip { space | Comment }
+
+BinaryExpression { "(" expression ("+" | "-") expression ")" }
+
+@tokens {
+  space { @whitespace+ }
+  Comment { "//" ![\n]* }
+  Name { @asciiLetter+ }
+  Number { @digit+ }
+  "(" ")"
+}

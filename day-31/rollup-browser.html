@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<!-- 參考解法： https://github.com/rollup/rollup/issues/3012 -->
+<script src="https://cdn.jsdelivr.net/npm/rollup@2.79.1/dist/rollup.browser.js"></script>
+<script type="module">
+  var bundle = rollup.rollup({
+    input: "rollup://localhost/a.mjs",
+    plugins: [
+      {
+        name: "rollup-in-browser-example",
+        resolveId(importee, importer) {
+          console.debug("resolveId", { importee, importer });
+          return new URL(importee, importer).href;
+        },
+        load(id) {
+          console.debug("load", { id });
+          switch (id) {
+            case "rollup://localhost/a.mjs":
+              return `import b from './b.mjs'; export default {a:b};`;
+            case "rollup://localhost/b.mjs":
+              return Promise.resolve(`export default {b:'b'}`);
+          }
+          throw new Error();
+        },
+      },
+    ],
+  });
+  var { code } = (await (await bundle).generate({})).output[0];
+  console.info(code);
+</script>
+</body>
+</html>
