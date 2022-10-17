@@ -28,6 +28,7 @@ npm i -D rollup
 - @top - 代表這個 grammar 的開頭
 - @skip - 代表產生 AST 時會跳過這些類型，不將其收錄在輸出的 tree 中
 - @tokens - 在此定義字元的類型
+- @detectDelim - 確認分隔符號，例如 `()`、`[]`、`{}`，自動縮排
 - expression - 自定義類型，將 tokens 中定義的類型，都算成 expression 類型
 - BinaryExpression - 自定義類型，也可組合類型將 `( 1 + 2 )` 當作 BinaryExpression 類型
 

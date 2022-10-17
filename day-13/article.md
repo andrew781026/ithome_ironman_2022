@@ -76,7 +76,7 @@ const AST = {
 
 ----
 
-明天實作 Tokens 轉換成 AST 的 Parser 吧 ( •̀ ω •́ )✧
+明天就根據上面的圖實作 Tokens 轉換成 AST 的 Parser 吧 ( •̀ ω •́ )✧
 
 ### 參考資料
 

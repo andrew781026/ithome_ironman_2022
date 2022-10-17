@@ -16,3 +16,5 @@ CommentExpression { "/*" (any)* "*/" }
   Comment { "//" ![\n]* }
   "{" "}"
 }
+
+@detectDelim

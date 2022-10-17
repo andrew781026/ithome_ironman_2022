@@ -53,7 +53,7 @@ BinaryExpression { "(" expression ("+" | "-") expression ")" }
 
 引入 `@lezer/highlight` 並設定要高亮的 token 類型
 
-- indentNodeProp - 設定 ( ) 的配對高亮
+- indentNodeProp - 縮排偵測對應的字元
 - foldNodeProp - 代表語法是否可以摺疊
 - styleTags - 需要高亮的語法(定義在 .grammar 的 token 之中)
 

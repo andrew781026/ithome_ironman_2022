@@ -4,7 +4,7 @@
 
 ## 複習
 
-當我們定義完成 lang.grammar 檔案後，建立 grammar.js 檔案，定義 配對的元素(indentNodeProp) 與 可折疊的元素(foldNodeProp) 還有需要特別顏色的 Token 。
+當我們定義完成 lang.grammar 檔案後，建立 grammar.js 檔案，定義 縮排偵測對應的字元(indentNodeProp) 與 可折疊的元素(foldNodeProp) 還有需要特別顏色的 Token 。
 
 再透過 `rollup src/grammar.js -c rollup-grammar.config.js` 生成我們的語法包 `myLang.js`。
 
@@ -12,8 +12,9 @@
 
 如果要建立 editor 的話，可以參考 [day-22] 中的範例用生成的語法包 `myLang.js` 來建立 `editor.bundle.js` 然後在 HTML 中引用。
 
-```
+// 可以要求解析器生成器使用 @detectDelim 指令自動推斷匹配的分隔符
 
+```
 @top Program { expression* }
 
 expression {
@@ -37,3 +38,4 @@ CommentExpression { "/*" (any)* "*/" }
 ### 參考資料
 
 - [codemirror - 自定義語法高亮](https://codemirror.net/examples/lang-package/)
+- [@lezer - writing-a-grammar](https://lezer.codemirror.net/docs/guide/#writing-a-grammar)

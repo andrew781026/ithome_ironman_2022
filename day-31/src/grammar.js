@@ -14,7 +14,8 @@ export const MyLanguage = LRLanguage.define({
         Application: foldInside
       }),
       styleTags({
-        "{ }": t.paren
+        "; ,": t.separator,
+        "{ }": t.brace
       })
     ]
   })

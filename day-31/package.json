@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "grammar-cjs": "rollup src/grammar.js -c rollup-grammar.config.js",
-    "editor-cjs": "rollup src/editor.js -c rollup-editor.config.js"
+    "editor-cjs": "rollup src/editor.js -c rollup-editor.config.js",
+    "editor-build": "npm run grammar-cjs && npm run editor-cjs"
   },
   "keywords": [],
   "author": "andrew",
