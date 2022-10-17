@@ -60,6 +60,10 @@ const parse = (tokens) => {
 
 明天我們開始分析 HTML 的規則，想辦法生成它的 Tokenizer 跟 Parser 吧 ~
 
+> 將 HTML 的 Tokens 轉換成 AST 之步驟可以參考下述兩篇文章
+> - [[Day13] - 簡易 HTML 的 Parse 實作示意圖](https://ithelp.ithome.com.tw/articles/10300391)
+> - [[Day14] - 簡易 HTML 的 Parse 實作](https://ithelp.ithome.com.tw/articles/10300994)
+
 ### 參考資料
 
 - [書籍 - Vue.js 設計與實現](https://www.tenlong.com.tw/products/9787115583864) - 第 15.3 章節
