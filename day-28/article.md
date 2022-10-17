@@ -81,3 +81,4 @@ type= Number     (from,to) = (3,4)      對應字串 = 1
 ### 參考資料
 
 - [@lezer/generator](https://github.com/lezer-parser/generator)
+- [@lezer - writing-a-grammar](https://lezer.codemirror.net/docs/guide/#writing-a-grammar)

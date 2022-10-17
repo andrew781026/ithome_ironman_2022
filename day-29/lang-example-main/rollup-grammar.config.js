@@ -1,4 +1,4 @@
-import {lezer} from "@lezer/generator/rollup"
+import {lezer} from "@lezer/generator"
 
 export default {
   input: "src/grammar.js",

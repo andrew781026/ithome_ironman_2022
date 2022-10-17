@@ -1,19 +1,18 @@
-@top Program { expression }
+@top Program { expression* }
 
 expression {
-  Name |
-  Number |
-  BinaryExpression
+  any |
+  CommentExpression |
+  Application { "{" expression* "}" }
 }
 
 @skip { space | Comment }
 
-BinaryExpression { "(" expression ("+" | "-") expression ")" }
+CommentExpression { "/*" (any)* "*/" }
 
 @tokens {
-  space { @whitespace+ }
+  any { $[.]+ }
+  space { $[ \t\n\r]+ }
   Comment { "//" ![\n]* }
-  Name { @asciiLetter+ }
-  Number { @digit+ }
-  "(" ")"
+  "{" "}"
 }

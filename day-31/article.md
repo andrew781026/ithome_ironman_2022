@@ -1,26 +1,39 @@
-# [Day31] - 整理一下 30 天的內容
+# [Day31] - 自製 CodeMirror 的 SCSS 語法包
 
-今天是系列文的最後一天，今年算是第一次沒有事前準備的寫系列文，所以有些地方可能會有些不足，但是我之後會盡力把這些不足補上。
+在 [day-29] 中我們說明了如何自製 CodeMirror 的語法包，今天我們來實作一個 SCSS 語法包。
 
-首先，我們來整理一下這 30 天的內容吧！
+## 複習
 
-## 30 天的內容
+當我們定義完成 lang.grammar 檔案後，建立 grammar.js 檔案，定義 配對的元素(indentNodeProp) 與 可折疊的元素(foldNodeProp) 還有需要特別顏色的 Token 。
 
-- [Day1] - 說明為何參加今年的鐵人賽
-- [Day2] - 粗略說明什麼是 Parser
-- [Day3] ~ [Day9] - 拿 .env 的文檔來做簡單的 Parser 
-- [Day10] ~ [Day20] - 介紹 HTML 的 Parser 跟說明 Parser 出的 AST 可以 Render HTML DOM
-- [Day21] ~ [Day30] - 有點混亂的說明 SCSS 的 Parser 跟介紹 CodeMirror 這個東西
+再透過 `rollup src/grammar.js -c rollup-grammar.config.js` 生成我們的語法包 `myLang.js`。
 
-## 30 天的心得
+之後建立出我們的語法包了 ~~~
 
-其實資工系有一門課程叫做 Compiler，我說明的 Parser 只是下面幾種分析方式，在 Compiler 的課程中，占一小部分
+如果要建立 editor 的話，可以參考 [day-22] 中的範例用生成的語法包 `myLang.js` 來建立 `editor.bundle.js` 然後在 HTML 中引用。
 
-- Lexical Analysis
-- Context-Free Grammar
+```
 
-不過，光是上面兩種，我就花許多心力去理解，而且沒有理解透測，所以我覺得這 30 天的內容，
+@top Program { expression* }
 
-說了個皮毛，如果有人因為這個系列文章，對於 Parser 或 Compiler 想要更深入了解，可以修 [EDX - Compilers](https://www.edx.org/course/compilers) 這門課，
+expression {
+  any |
+  CommentExpression |
+  Application { "{" expression* "}" }
+}
 
-雖然有點硬，不過教授真的解釋得不錯 \(@^0^@)/
+@skip { space | Comment }
+
+CommentExpression { "/*" (any)* "*/" }
+
+@tokens {
+  any { $[.]+ }
+  space { $[ \t\n\r]+ }
+  Comment { "//" ![\n]* }
+  "{" "}"
+}
+```
+
+### 參考資料
+
+- [codemirror - 自定義語法高亮](https://codemirror.net/examples/lang-package/)

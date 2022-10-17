@@ -1,19 +1,20 @@
 import {parser} from "./lang.grammar"
-import {LRLanguage, LanguageSupport, indentNodeProp, foldNodeProp, foldInside, delimitedIndent} from "@codemirror/language"
+import {LRLanguage, LanguageSupport, indentNodeProp, foldNodeProp, foldInside} from "@codemirror/language"
 import {styleTags, tags as t} from "@lezer/highlight"
 
 export const MyLanguage = LRLanguage.define({
   parser: parser.configure({
     props: [
       indentNodeProp.add({
-        Program: delimitedIndent({closing: ")", align: false})
+        // 縮進策略 (Indentation strategy) - 用於縮排
+        Application: context => context.column(context.node.from) + context.unit
       }),
       foldNodeProp.add({
-        Program: foldInside
+        // 將可折疊區塊改成用 Application
+        Application: foldInside
       }),
       styleTags({
-        Number: t.number,
-        "( )": t.paren
+        "{ }": t.paren
       })
     ]
   })
