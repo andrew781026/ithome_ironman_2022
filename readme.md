@@ -34,6 +34,7 @@ html . pug . markdown . yaml . json . xml . csv . toml . ini . properties . sql 
 
 ### 一些參考資料
 
+- [快速了解 Formal Language (形式語言)](https://srhuang.github.io/formal%20language/2019/09/15/formallanguage-001.html)
 
 > git-book
  
