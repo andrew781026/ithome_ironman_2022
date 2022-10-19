@@ -45,7 +45,8 @@
 
 - `<number>` 定義數字可以是 0 ~ 9 的任意值
 - `<sign>` 定義符號可以是 + 或 -
-- `<expression>` 定義 expression 可接受的文字格式
+- `<expression>` 定義 expression 可接受 (5+7) . (6-2) 這類的文字格式
+- `<more-expression>` 定義 more-expression 可接受 ((5+7)-8) . ((6-2)+7) 這類的文字格式，不過 (9-(5+7)) 就不符合格式
 
 因此在 Grammar_01 中 `(5+7)` . `((5+7)+6)` 是合法的，但是 `(5+7+9)` 就不合法。
 
