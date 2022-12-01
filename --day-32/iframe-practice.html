@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Iframe Practice</title>
+  <style>
+    iframe {
+      min-width: 200px;
+      min-height: 300px;
+      border: 1px solid black;
+    }
+
+    .container {
+      margin-top: 20px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .container::before {
+      position: absolute;
+      top: -24px;
+      background-color: #98c1fe;
+      padding: 4px 8px;
+      content: attr(data-title);
+    }
+  </style>
+  <link rel="stylesheet" href="">
+</head>
+<body>
+<div data-title="CSS" class="container"><textarea name="css" id="css" cols="30" rows="10"></textarea></div>
+<div data-title="HTML" class="container"><textarea name="html" id="html" cols="30" rows="10"></textarea></div>
+<div data-title="JS" class="container"><textarea name="js" id="js" cols="30" rows="10"></textarea></div>
+<iframe name="iframe" id="iframe" src="" frameborder="0"></iframe>
+
+
+<script type="module">
+  import {debounce} from "./debounce.js";
+
+  // 建立 debounce of 3 block
+  const cssEl = document.querySelector('#css');
+  const htmlEl = document.querySelector('#html');
+  const jsEl = document.querySelector('#js');
+  const iframeContent = document.querySelector('#iframe').contentWindow; // contentWindow 代表 window 物件
+  const delay = 1000;
+
+  // window.document.head . window.document.body
+
+  // https://stackoverflow.com/questions/36678077/blob-based-link-stylesheet-vs-standard-style-tag
+  const blobCss = css => {
+    var blob = new Blob(css, {type: 'text/css'});
+    var link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = window.URL.createObjectURL(blob);
+    // head.appendChild(link);
+  }
+
+  const updateCss = (blob, link) => () => {
+    blob && window.URL.revokeObjectURL(blob); // 清除 blob 對應的 http link
+    blob = new Blob([cssEl.value], {type: 'text/css'}); // 建立新的 blob
+    link.href = window.URL.createObjectURL(blob); // 利用 blob 建立 http link
+  }
+
+  const updateHtml = () => {
+    iframeContent.document.body.innerHTML = htmlEl.value
+  }
+
+  const initCssPart = () => {
+    let blob = new Blob([''], {type: 'text/css'});
+    let link = document.createElement('link');
+    link.rel = 'stylesheet';
+    iframeContent.document.head.appendChild(link);
+    const debounceUpdateCss = debounce(updateCss(blob, link), delay);
+    cssEl.addEventListener("input", () => debounceUpdateCss());
+  }
+
+  const initHtmlPart = () => {
+    const debounceUpdateHtml = debounce(updateHtml, delay);
+    htmlEl.addEventListener("input", () => debounceUpdateHtml());
+  }
+
+  initCssPart();
+  initHtmlPart();
+
+  const setDefult = () => {
+
+    // 設定預設值
+    cssEl.value = `
+      div{
+        background-color: red;
+        width: 100px;
+        height: 100px;
+      }
+    `;
+
+    htmlEl.value = `<div></div>`;
+
+    jsEl.value = ``;
+
+    // 觸發 input 事件
+    cssEl.dispatchEvent(new Event('input', {bubbles: true}));
+    htmlEl.dispatchEvent(new Event('input', {bubbles: true}));
+    jsEl.dispatchEvent(new Event('input', {bubbles: true}));
+  }
+
+  setDefult();
+
+</script>
+</body>
+</html>

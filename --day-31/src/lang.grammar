@@ -1,0 +1,20 @@
+@top Program { expression* }
+
+expression {
+  any |
+  CommentExpression |
+  Application { "{" expression* "}" }
+}
+
+@skip { space | Comment }
+
+CommentExpression { "/*" (any)* "*/" }
+
+@tokens {
+  any { $[.]+ }
+  space { $[ \t\n\r]+ }
+  Comment { "//" ![\n]* }
+  "{" "}"
+}
+
+@detectDelim
