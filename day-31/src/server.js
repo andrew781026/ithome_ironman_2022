@@ -1,10 +1,12 @@
 const bodyParser = require('body-parser');
+const express = require('express');
 const app = require('express')();
 const http = require('http').Server(app);
 const port = process.env.PORT || 3090;
 const _uuid = require('./uuid');
 
 app.use(bodyParser.json());
+// app.use('/static', express.static('public'));
 
 // NOTE : 下方 pens 可能會造成 memory leak，建議在大專案中將 pens 資料存到 Redis 中
 const pens = {};

@@ -48,7 +48,7 @@ JS on client-side render 的部分，有點超出我目前的能力（可能需�
   <title>Client CodePen</title>
   
   <!-- 引用 github 上設定好的 style -->
-  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="https://raw.githubusercontent.com/andrew781026/ithome_ironman_2022/main/day-31/src/style/style.css">
 </head>
 <body>
 <header>
