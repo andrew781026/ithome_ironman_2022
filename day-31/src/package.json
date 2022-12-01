@@ -1,0 +1,14 @@
+{
+  "name": "mimic-codepen",
+  "version": "0.0.1",
+  "description": "my mimic codepen",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "body-parser": "^1.20.1"
+  }
+}

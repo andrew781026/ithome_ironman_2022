@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>My CodePen</title>
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        iframe {
+            width: 300px;
+            height: 300px;
+            background-color: aqua;
+        }
+
+        .container {
+            transform: translateY(-32px);
+            float: left;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin: 30px 24px 30px 0;
+            padding: 8px;
+            background-color: #289ad4;
+        }
+
+        .wrap {
+            position: relative;
+            flex-grow: 1;
+            /*border: 2px solid #289ad4;*/
+        }
+
+        .wrap::before {
+            content: attr(data-title);
+            position: absolute;
+            left: 4px;
+            top: -24px;
+            background-color: #333333;
+            padding: 4px 12px;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-size: 1.4em;
+        }
+
+        textarea {
+            width: 100%;
+            height: 100%;
+            padding: 16px 8px;
+        }
+    </style>
+</head>
+<body>
+<h1>
+    PEN_ID :
+    <span id="penId"></span>
+</h1>
+<div class="container">
+    <div class="wrap" data-title="js"><textarea id="js" cols="30" rows="10"></textarea></div>
+    <div class="wrap" data-title="css"><textarea id="css" cols="30" rows="10"></textarea></div>
+    <div class="wrap" data-title="html"><textarea id="html" cols="30" rows="10"></textarea></div>
+</div>
+<iframe src="" id="iframe"></iframe>
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    const debounce = (job, delay = 1000) => {
+        let timer = null;
+        return function () {
+            timer && clearTimeout(timer);
+            timer = setTimeout(job, delay);
+        }
+    }
+
+    const socket = io("ws://localhost:3090");
+    const penIdEl = document.querySelector('#penId');
+    const iframeEl = document.querySelector('#iframe');
+    // const jsEl = document.querySelector('#js');
+    // const cssEl = document.querySelector('#css');
+    // const htmlEl = document.querySelector('#html');
+
+    const updatePenId = penId => {
+        iframeEl.src = `http://localhost:3090/iframe/${penId}`;
+        penIdEl.innerText = penId;
+    };
+
+    const textAreas = ['js', 'css', 'html'];
+    textAreas.forEach(item => {
+        document
+            .querySelector('#'+item)
+            .addEventListener('keyup', e => {
+                socket.emit(`${item} update`, e.target.value);
+            })
+    })
+
+    socket.emit('pen init',location.pathname.split('/').pop());
+    socket.on('pen init', updatePenId);
+
+    socket.on('iframe reload', () => {
+        // reload iframe
+        iframeEl.contentWindow.location.reload();
+    });
+
+    /*
+
+    console.log('Hello World');
+
+    setTimeout( ()=>{
+      document.querySelector('.box').style.backgroundColor = 'red';
+    } ,1000);
+
+-----------------------------------------------------
+
+    .box{
+        width: 100px;
+        height: 100px;
+        background-color: #333;
+    }
+
+-----------------------------------------------------
+
+        <div class="box"></div>
+
+    */
+</script>
+</body>
+</html>
